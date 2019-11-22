@@ -1,4 +1,7 @@
-
+/**
+ *  Different CellTypes
+ * @author George Sims
+ */
 public enum CellType {
 	FIRE_CELL,
 	FLOOR_CELL,
