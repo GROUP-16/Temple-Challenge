@@ -1,7 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import java.util.ArrayList; //using for creating enemies
 /**
  * This class is responsible for all operations relating to the Map Class, these operations include map creation
  * from a file and storing the map. The Map will be heavily relied upon by the other classes in the project
@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class Map {
 	
 	private Cell[][] cells;
-	private Enemy[][] stuff;
-	
+	private ArrayList<Enemy> enemies; //This is a test array
+	//As i create the enemies we will add them to the array
 	//constants for use when reading from a file
 	private final char SENTINEL_CHAR = '>';
 	private final char FIRE_CHAR = 'F';
@@ -31,20 +31,40 @@ public class Map {
 	 */
 	public Map() {
 		this.cells = new Cell[50][50]; //maximum map size
+		this.enemies = new ArrayList<Enemy>(); //array List to store enemies as they are created 
 	}
 	
 	/**
 	 * Basic toString method that loops through the cells array outputting the type of cell that is stored in each
 	 */
 	public String toString() {
-		for (Cell[] x : cells) {
-			for(Cell c : x) {
+		char outputString[][] = new char[50][50];
+		int x = 0; //counters
+		int y = 0;
+		for (Cell[] X : cells) {
+			for(Cell c : X) {
 				if(c != null) {
-					System.out.print(c.getCellChar() + " ");					
-				}				
+					outputString[x][y] = c.getCellChar();
+				}
+				y++;
 			}
-			System.out.println();
+			x++;
+			y = 0;
 		}
+		
+		for(Enemy enemy: enemies) {
+			x = enemy.getxCoord();
+			y = enemy.getyCoord();
+			outputString[x][y] = 'E';
+		}
+		
+		for(char[] X : outputString) {
+			for(char Y : X) {
+				System.out.print(Y);
+			}
+			System.out.println("");
+		}
+
 		return " ";
 	}
 	/**
@@ -62,6 +82,10 @@ public class Map {
 	 */
 	public Cell[][] getMap() {
 		return this.cells;
+	}
+	
+	public ArrayList<Enemy> getEnemies(){
+		return this.enemies;
 	}
 	/**
 	 * Method for the creation of a specified CellType at a given location
@@ -230,6 +254,10 @@ public class Map {
 			case ITEM_CHAR:
 				t = CellType.ITEM_CELL;
 				break;
+			case ENEMY_CHAR:
+				t = CellType.FLOOR_CELL;
+				Enemy E = new Enemy(x,i,0,0);
+				enemies.add(E);
 			default:
 				t = CellType.WALL_CELL;
 			}
@@ -261,12 +289,16 @@ public class Map {
 	 * This is a simple method that loops through the cells array clearing every cell in it and setting it to null
 	 */
 	private void clearMap(){ //loops through file deleting cells, this is needed when loading the next map
-		 for(int i=0; i<cells.length; i++) {
+		 /**for(int i=0; i<cells.length; i++) {
 		        for(int j=0; j<cells[i].length; j++) {
 		            //cells[i][j] = new Cell(CellType.FLOOR_CELL);
 		        	cells[i][j] = null;
 		        }
 		    }
+		    **/ //Alternate method is to just create a new Array and store it in the same part
+		this.cells = new Cell[50][50]; //maximum map size
+		this.enemies = new ArrayList<Enemy>(); //creating new ArrayList
+		 
 	}	
 }
 	

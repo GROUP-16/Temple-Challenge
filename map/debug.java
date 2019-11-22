@@ -18,7 +18,7 @@ public class debug {
 		//.out.println(t.getItemType());
 		map.readFile("testFile.txt");
 		//System.out.println(map.getCell(6, 8).getCellType());
-		//System.out.println(map);
+		System.out.println(map);
 		Teleporter t = (Teleporter) map.getCell(6, 7);
 		System.out.println(t.getPairX());
 		System.out.println(t.getPairY());
