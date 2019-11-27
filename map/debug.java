@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class debug {
 
@@ -25,6 +26,11 @@ public class debug {
 		Item i = (Item) map.getCell(8, 7);
 		System.out.println(i.getItemType());
 		System.out.println(i.getColour());
+		Player p = map.getPlayer();
+		ArrayList<Item> items = p.getItems();
+		for (Item temp : items) {
+			System.out.println(temp.getItemType());
+		}
 	}
 
 }

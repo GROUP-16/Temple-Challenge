@@ -14,6 +14,7 @@ public class Map {
 	private Cell[][] cells;
 	private ArrayList<Enemy> enemies; //This is a test array
 	//As i create the enemies we will add them to the array
+	private Player player;
 	//constants for use when reading from a file
 	private final char SENTINEL_CHAR = '>';
 	private final char FIRE_CHAR = 'F';
@@ -26,6 +27,14 @@ public class Map {
 	private final char ITEM_CHAR = 'I';
 	private final char ENEMY_CHAR = 'E';
 	
+	
+	//constants for additional information
+	private final String START_STRING = "START";
+	private final String KEY_STRING = "KEY";
+	private final String FIRE_BOOT_STRING = "FIRE_BOOTS";
+	private final String FLIPPER_STRING = "FLIPPER";
+	private final String TOKEN_STRING = "TOKEN";
+
 	/**
 	 * Basic constructor that initialises the map and Cell array to a default size of 50*50 
 	 */
@@ -181,18 +190,18 @@ public class Map {
 			Item item =(Item) c;
 			String itemType = in.next();
 			switch(itemType) {
-			case("Key"):
+			case(KEY_STRING):
 				String colour = in.next();
 				item.setItemType(ItemType.KEY);
 				item.setColour(colour);
 				break;
-			case("FireBoots"):
+			case(FIRE_BOOT_STRING):
 				item.setItemType(ItemType.FIRE_BOOTS);
 				break;
-			case("Flippers"):
+			case(FLIPPER_STRING):
 				item.setItemType(ItemType.FLIPPERS);
 				break;
-			case("Token"):
+			case(TOKEN_STRING):
 				item.setItemType(ItemType.TOKEN);
 				break;
 			default:
@@ -211,6 +220,44 @@ public class Map {
 			String condition = in.next();
 			door.setCondition(condition);
 			break;
+		case FLOOR_CELL: //this is for player start or enemy additional information
+			String s = in.next();
+			if(s.equals(START_STRING)) { //its player start 
+				ArrayList<Item> i = new ArrayList<Item>(); 
+				while (in.hasNext()){
+					Item savedItem = new Item(CellType.ITEM_CELL);
+					s = in.next();
+					//Item item = (Item) map.getCell(0, 0);
+					switch(s) {
+					case(KEY_STRING):
+						String colour = in.next();
+						savedItem.setItemType(ItemType.KEY);
+						savedItem.setColour(colour);
+						i.add(savedItem);
+						break;
+					case(FIRE_BOOT_STRING):
+						savedItem.setItemType(ItemType.FIRE_BOOTS);
+						i.add(savedItem);
+						break;
+					case(FLIPPER_STRING):
+						savedItem.setItemType(ItemType.FLIPPERS);
+						i.add(savedItem);
+						break;
+					case(TOKEN_STRING):
+						savedItem.setItemType(ItemType.TOKEN);
+						i.add(savedItem);
+						break;
+					default:
+						savedItem.setItemType(ItemType.TOKEN);
+						i.add(savedItem);
+						break;//default item in case of error in map file
+					}
+				}
+				this.player = new Player(x,y,i);
+			} else {
+				//enemy stuff
+			} 
+			
 		default:
 			break;			
 		}
@@ -299,6 +346,14 @@ public class Map {
 		this.cells = new Cell[50][50]; //maximum map size
 		this.enemies = new ArrayList<Enemy>(); //creating new ArrayList
 		 
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}	
 }
 	
