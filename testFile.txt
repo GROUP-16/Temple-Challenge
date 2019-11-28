@@ -6,13 +6,13 @@
 # # # ####
 # #   #PD#
 # ###### #
-# #   #I #
+# # E #I #
 # # # ## #
 #   #    #
 ##########
 >
-1 1 START
+1 1 START KEY red FLIPPER
 8 8 RED
-8 7 Key RED
+8 7 KEY RED
 6 7 4 8 
 4 8 6 7
