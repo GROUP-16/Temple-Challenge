@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ldrController">
+   <children>
+      <Button fx:id="btnBack" onAction="#openMainMenu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Back" />
+      <Button fx:id="btnNext" layoutX="486.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Next Level" />
+      <Button fx:id="btnPrev" layoutX="408.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Prev Level" />
+      <TableView fx:id="tblLeader" layoutX="119.0" layoutY="65.0" prefHeight="237.0" prefWidth="263.0">
+        <columns>
+          <TableColumn fx:id="leadPosition" prefWidth="64.0" text="Position" />
+          <TableColumn prefWidth="108.0" text="Name" />
+            <TableColumn prefWidth="90.0" text="Time" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tblPosition" layoutX="119.0" layoutY="319.0" prefHeight="57.0" prefWidth="263.0">
+         <columns>
+            <TableColumn fx:id="posPosition" prefWidth="64.0" text="Position" />
+            <TableColumn fx:id="posName" prefWidth="108.0" text="Name" />
+            <TableColumn fx:id="posTime" prefWidth="90.0" text="Time" />
+         </columns>
+      </TableView>
+      <Label fx:id="lblLeader" layoutX="14.0" layoutY="175.0" text="Full Leaderboard" />
+      <Label layoutX="32.0" layoutY="348.0" text="Your Position" />
+      <ImageView fx:id="imgMaze" fitHeight="150.0" fitWidth="173.0" layoutX="386.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <Blend />
+         </effect>
+         <image>
+            <Image url="@../39349880-maze-labyrinth-.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="233.0" layoutY="39.0" text="Map #" />
+   </children>
+</AnchorPane>
