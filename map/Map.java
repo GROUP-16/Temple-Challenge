@@ -8,7 +8,12 @@ import java.util.ArrayList; //using for creating enemies
  * 
  * @author George Sims
  *
+ *
+ *
+ *X represents the Column 
+ *Y Represents the row 
  */
+
 public class Map {
 	
 	private Cell[][] cells;
@@ -85,12 +90,22 @@ public class Map {
 	public Cell getCell(int x, int y) {
 		return this.cells[x][y];
 	}
+	
+	
 	/** 
 	 * simple getter for the map its self 
 	 * @return returns a Cell[][] array which stores the current version of the map
 	 */
 	public Cell[][] getMap() {
 		return this.cells;
+	}
+	
+	public Map mapCopy() {
+		Map m = new Map();
+		m.setPlayer(this.player);
+		m.setMap(this.cells);
+		m.setEnemies(this.enemies);
+		return m;
 	}
 	
 	public ArrayList<Enemy> getEnemies(){
@@ -354,7 +369,15 @@ public class Map {
 
 	public void setPlayer(Player player) {
 		this.player = player;
-	}	
+	}
+	
+	public void setMap(Cell[][] c) {
+		this.cells = c;
+	}
+	
+	public void setEnemies (ArrayList<Enemy> e) {
+		this.enemies = e;
+	}
 }
 	
 	
