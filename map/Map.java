@@ -72,6 +72,10 @@ public class Map {
 			outputString[x][y] = 'E';
 		}
 		
+		x = player.getX();
+		y = player.getY();
+		outputString[x][y] = 'P';
+		
 		for(char[] X : outputString) {
 			for(char Y : X) {
 				System.out.print(Y);
@@ -80,6 +84,34 @@ public class Map {
 		}
 
 		return " ";
+	}
+	
+	public char[][] mapCharArray(){
+		char outputString[][] = new char[50][50];
+		int x = 0; //counters
+		int y = 0;
+		for (Cell[] X : cells) {
+			for(Cell c : X) {
+				if(c != null) {
+					outputString[x][y] = c.getCellChar();
+				}
+				y++;
+			}
+			x++;
+			y = 0;
+		}
+		
+		for(Enemy enemy: enemies) {
+			x = enemy.getxCoord();
+			y = enemy.getyCoord();
+			outputString[x][y] = 'E';
+		}
+		
+		x = player.getX();
+		y = player.getY();
+		outputString[x][y] = 'P';
+		
+		return outputString;
 	}
 	/**
 	 * Simple getter for a specific cell
@@ -350,7 +382,7 @@ public class Map {
 	/**
 	 * This is a simple method that loops through the cells array clearing every cell in it and setting it to null
 	 */
-	private void clearMap(){ //loops through file deleting cells, this is needed when loading the next map
+	public void clearMap(){ //loops through file deleting cells, this is needed when loading the next map
 		 /**for(int i=0; i<cells.length; i++) {
 		        for(int j=0; j<cells[i].length; j++) {
 		            //cells[i][j] = new Cell(CellType.FLOOR_CELL);
