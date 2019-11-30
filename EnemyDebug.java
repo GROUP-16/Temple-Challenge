@@ -5,8 +5,8 @@ public class EnemyDebug {
 	public static void main(String[] args) {
 		Map map = new Map();
 		map.readFile("testFile.txt");
-		ArrayList<Enemy> enemies = map.getEnemies();
-		Enemy E = enemies.get(0);
+		ArrayList<StraightLineAI> enemies = map.getEnemies();
+		StraightLineAI E = enemies.get(0);
 		//System.out.println(map);
 		//System.out.println(map.getCell(0,1).getCellType());
 		
@@ -38,12 +38,19 @@ public class EnemyDebug {
 			System.out.println(E.getNextXCoord()+ " next x next y " + E.getNextYCoord());
 			System.out.println(map.getCell(E.getNextXCoord(),E.getNextYCoord()).getCellType()+ " next cell");
 			*/
+			System.out.println(map);
+			
+			//E.mapFill();
+			//E.simpleLineAI();
+			//E.dumbPlayerFinderAI(1,1);
+			//E.wallHuggerAI();
+			//E = new Enemy(E.getYCoord(), E.getXCoord(),0,0,"upLeft",map);
+			E.simpleLineAI();
 			//System.out.println(map);
 			
-			//E.simpleLineAI();
-			E.dumbPlayerFinderAI(8,2);
-			//E.wallHuggerAI();
-			System.out.println(map);
+			
+			
+			
 			//System.out.println(E.getNextYCoord());
 			//System.out.println(E.getNextXCoord());
 			//System.out.println(E.getxCoord() + " x coord");
