@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.profController">
+   <children>
+      <Button fx:id="btnBack" onAction="#openMainMenu" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" text="Back" />
+      <Button fx:id="btnCreate" onAction="#openCreate" layoutX="271.0" layoutY="100.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" text="Create" />
+      <Button fx:id="btnLoad" layoutX="271.0" layoutY="181.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" text="Load" />
+      <Button fx:id="btnDelete" layoutX="271.0" layoutY="262.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="80.0" text="Delete" />
+      <ListView fx:id="lstProf" layoutX="25.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</Pane>
