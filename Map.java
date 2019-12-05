@@ -67,9 +67,9 @@ public class Map {
 		}
 		
 		for(Enemy enemy: enemies) {
-			x = enemy.getxCoord();
-			y = enemy.getyCoord();
-			outputString[x][y] = 'E';
+			x = enemy.getXCoord();
+			y = enemy.getYCoord();
+			outputString[y][x] = 'E';
 		}
 		
 		x = player.getX();
@@ -102,9 +102,9 @@ public class Map {
 		}
 		
 		for(Enemy enemy: enemies) {
-			x = enemy.getxCoord();
-			y = enemy.getyCoord();
-			outputString[x][y] = 'E';
+			x = enemy.getXCoord();
+			y = enemy.getYCoord();
+			outputString[y][x] = 'E';
 		}
 		
 		x = player.getX();
@@ -350,8 +350,28 @@ public class Map {
 				break;
 			case ENEMY_CHAR:
 				t = CellType.FLOOR_CELL;
-				Enemy E = new Enemy(x,i,0,0);
-				enemies.add(E);
+				String enemyType = "Smart";
+				switch(enemyType) {
+					case "Smart":
+						SmartAI E1 = new SmartAI(i,x,0,0,this);
+						enemies.add(E1);
+						break;
+					case "Straight":
+						StraightLineAI E2 = new StraightLineAI(i,x,0,-1,this);
+						enemies.add(E2);
+						break;
+					case "WallHugger":
+						WallHuggingAI E3 = new WallHuggingAI(i,x,0,0,this,"upRight");
+						enemies.add(E3);
+						break;
+					case "Dumb":
+						//add an alt route if shortest isnt possible
+						DumbPlayerFinderAI E4 = new DumbPlayerFinderAI(i,x,0,0,this);
+						enemies.add(E4);
+						break;
+					default:
+				}
+				break;
 			default:
 				t = CellType.WALL_CELL;
 			}
