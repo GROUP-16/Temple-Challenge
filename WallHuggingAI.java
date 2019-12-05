@@ -2,8 +2,8 @@
 public class WallHuggingAI extends Enemy{
 	private String directionWall;
 	
-	public WallHuggingAI(int yCoord, int xCoord, int dy, int dx, Map map,String directionWall) {
-		super(yCoord, xCoord, dy, dx, map);
+	public WallHuggingAI(int xCoord, int yCoord, int dy, int dx, Map map,String directionWall) {
+		super(xCoord, yCoord, dy, dx, map);
 		this.directionWall = directionWall;
 	}
 	
@@ -16,7 +16,7 @@ public class WallHuggingAI extends Enemy{
 	}
 
 
-	public void wallHuggerAI() {
+	public void move(int playerXCoord, int playerYCoord) {
 		// states in direction and hugging wall
 		// cry
 		
@@ -39,6 +39,22 @@ public class WallHuggingAI extends Enemy{
 		case "rightUp":
 			System.out.println("current rightUp");
 			rightUp();
+			break;
+		case "upRight":
+			System.out.println("current upRight");
+			upRight();
+			break;
+		case "leftUp":
+			System.out.println("current leftUp");
+			leftUp();
+			break;
+		case "rightDown":
+			System.out.println("current rightDown");
+			rightDown();
+			break;
+		case "downLeft":
+			System.out.println("current downLeft");
+			downLeft();
 			break;
 		default:
 			System.out.println("nothing");
@@ -168,6 +184,124 @@ public class WallHuggingAI extends Enemy{
 			// setDirectionWall("downRight");
 			System.out.println("right is not floor tile");
 			System.out.println("was rightUp changing to downRight");
+		}
+	}
+	public void upRight() {
+		setDx(0);
+		setDy(-1);
+		// floor tile
+
+		if (!(checkCollision(getMap().getCell(getYCoord() - 1, getXCoord()).getCellType()))) {
+			// floor tile
+			//System.out.println("up floor tile");
+			if (!(checkCollision(getMap().getCell(getYCoord() - 1, getXCoord() + 1).getCellType()))) {
+				setDirectionWall("rightDown");
+				//System.out.println("upleft floor tile");
+				//System.out.println("was upLeft changing to leftDown");
+			} else {
+				//System.out.println("upleft not floor tile");
+				//System.out.println("no change");
+			}
+		} else {
+			if (!(checkCollision(getMap().getCell(getYCoord(), getXCoord() - 1).getCellType()))) {
+				setDx(-1);
+				setDy(0);
+			} else {
+				setDx(0);
+				setDy(0);
+				setDirectionWall("downLeft");
+			}
+
+			// setDirectionWall("rightUp");
+			//System.out.println("up is not floor");
+			//System.out.println("was upLeft changing to rightUp");
+		}
+	}
+	public void downLeft() {
+		setDx(0);
+		setDy(1);
+		// floor tile
+		if (!(checkCollision(getMap().getCell(getYCoord() + 1, getXCoord()).getCellType()))) {
+			// floor tile
+			//System.out.println("down floor tile");
+			if (!(checkCollision(getMap().getCell(getYCoord() + 1, getXCoord() - 1).getCellType()))) {
+				setDirectionWall("leftUp");
+				//System.out.println("down right floor tile");
+				//System.out.println("was downRight changing to rightUp");
+			} else {
+				//System.out.println("downright not floor tile");
+				//System.out.println("no change");
+			}
+		} else {
+			if (!(checkCollision(getMap().getCell(getYCoord(), getXCoord() + 1).getCellType()))) {
+				setDx(1);
+				setDy(0);
+			} else {
+				setDirectionWall("upRight");
+				setDx(0);
+				setDy(0);
+			}
+			// setDirectionWall("leftDown");
+			System.out.println("down is not a floor tile");
+			System.out.println("was downRight changing to leftDown");
+		}
+	}
+	public void leftUp() {
+		setDx(-1);
+		setDy(0);
+		// floor tile
+		if (!(checkCollision(getMap().getCell(getYCoord(), getXCoord() - 1).getCellType()))) {
+			// floor tile
+			//System.out.println("left floor tile");
+			if (!(checkCollision(getMap().getCell(getYCoord() + 1, getXCoord() - 1).getCellType()))) {
+				setDirectionWall("upRight");
+				//System.out.println("leftdown floor tile");
+				//System.out.println("was leftDown changing to downRight");
+			} else {
+				//System.out.println("leftdown is not a floor tile");
+				//System.out.println("no change");
+			}
+		} else {
+			if (!(checkCollision(getMap().getCell(getYCoord() - 1, getXCoord()).getCellType()))) {
+				setDx(0);
+				setDy(-1);
+			} else {
+				setDx(0);
+				setDy(0);
+				setDirectionWall("downLeft");
+			}
+			System.out.println("left is not a floor tile");
+			// setDirectionWall("upLeft");
+			System.out.println("was leftDown changing to upLeft");
+		}
+	}
+	public void rightDown() {
+		setDx(1);
+		setDy(0);
+		// floor tile
+		if (!(checkCollision(getMap().getCell(getYCoord(), getXCoord() + 1).getCellType()))) {
+			// floor tile
+			//System.out.println("left floor tile");
+			if (!(checkCollision(getMap().getCell(getYCoord() + 1, getXCoord() + 1).getCellType()))) {
+				setDirectionWall("downLeft");
+				//System.out.println("leftdown floor tile");
+				//System.out.println("was leftDown changing to downRight");
+			} else {
+				//System.out.println("leftdown is not a floor tile");
+				//System.out.println("no change");
+			}
+		} else {
+			if (!(checkCollision(getMap().getCell(getYCoord() + 1, getXCoord()).getCellType()))) {
+				setDx(0);
+				setDy(1);
+			} else {
+				setDx(0);
+				setDy(0);
+				setDirectionWall("leftUp");
+			}
+			//System.out.println("left is not a floor tile");
+			// setDirectionWall("upLeft");
+			//System.out.println("was leftDown changing to upLeft");
 		}
 	}
 

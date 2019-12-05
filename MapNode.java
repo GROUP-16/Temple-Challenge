@@ -21,7 +21,17 @@
 		public int getY() {
 			return y;
 		}
-
+		
+		public String stringTo() {
+			String string = "";
+			string += "X: " + this.x;
+			string += " Y: " + this.y;
+			if(this.parent != null) {
+				string += " parent X: " + this.parent.getX();
+				string += " parent Y: " + this.parent.getY();
+			}
+			return string;
+		}
 
 		// Compare by f value (g + h)
 		@Override

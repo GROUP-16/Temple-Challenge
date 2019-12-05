@@ -5,8 +5,8 @@ public class EnemyDebug {
 	public static void main(String[] args) {
 		Map map = new Map();
 		map.readFile("testFile.txt");
-		ArrayList<StraightLineAI> enemies = map.getEnemies();
-		StraightLineAI E = enemies.get(0);
+		ArrayList<Enemy> enemies = map.getEnemies();
+		Enemy E = enemies.get(0);
 		//System.out.println(map);
 		//System.out.println(map.getCell(0,1).getCellType());
 		
@@ -28,7 +28,7 @@ public class EnemyDebug {
 		
 		int x = 0;
 		System.out.println("top");
-		while (x<14) {
+		while (x<30) {
 			//if (map.getCell(E.getNextYCoord(),E.getNextXCoord()).getCellType().equals(CellType.FLOOR_CELL)) {
 			//	System.out.println("ok");
 			//}
@@ -38,14 +38,25 @@ public class EnemyDebug {
 			System.out.println(E.getNextXCoord()+ " next x next y " + E.getNextYCoord());
 			System.out.println(map.getCell(E.getNextXCoord(),E.getNextYCoord()).getCellType()+ " next cell");
 			*/
+			//E.move(1,1);
+			//System.out.println(map);
+			
+			
+			//if(E instanceof SmartAI) {
+			//	E = new SmartAI(E.getYCoord(),E.getXCoord(), 0, 0, map);
+			//}
+			
+			
 			System.out.println(map);
+			
+			E.move(1,1);
 			
 			//E.mapFill();
 			//E.simpleLineAI();
 			//E.dumbPlayerFinderAI(1,1);
 			//E.wallHuggerAI();
 			//E = new Enemy(E.getYCoord(), E.getXCoord(),0,0,"upLeft",map);
-			E.simpleLineAI();
+			
 			//System.out.println(map);
 			
 			

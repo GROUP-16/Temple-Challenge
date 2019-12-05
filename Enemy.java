@@ -1,6 +1,6 @@
 
 
-public class Enemy {
+public abstract class Enemy {
 	private int xCoord;
 	private int yCoord;
 	// dy and dx are to choose the direction the enemy is about to move in.
@@ -11,7 +11,7 @@ public class Enemy {
 	private int nextYCoord;
 	private Map map;
 	
-	public Enemy(int yCoord, int xCoord, int dy, int dx, Map map) {
+	public Enemy(int xCoord, int yCoord, int dy, int dx, Map map) {
 		this.xCoord = xCoord;
 		this.yCoord = yCoord;
 		this.dy = dy;
@@ -21,13 +21,13 @@ public class Enemy {
 		//this.mapCopy = map.mapCopy().mapCharArray();
 	}
 	public int getXCoord() {
-		return xCoord;
+		return this.xCoord;
 	}
 	public void setXCoord(int xCoord) {
 		this.xCoord = xCoord;
 	}
 	public int getYCoord() {
-		return yCoord;
+		return this.yCoord;
 	}
 	public void setYCoord(int yCoord) {
 		this.yCoord = yCoord;
@@ -61,7 +61,8 @@ public class Enemy {
 	}
 	
 	
-	
+	public abstract void move(int playerXCoord, int playerYCoord) ;
+		
 	
 	
 	public void updateNext() {
