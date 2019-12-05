@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class debug {
 
@@ -19,6 +20,7 @@ public class debug {
 		//.out.println(t.getItemType());
 		map.readFile("testFile.txt");
 		//System.out.println(map.getCell(6, 8).getCellType());
+		/**
 		System.out.println(map);
 		Teleporter t = (Teleporter) map.getCell(6, 7);
 		System.out.println(t.getPairX());
@@ -31,6 +33,41 @@ public class debug {
 		for (Item temp : items) {
 			System.out.println(temp.getItemType());
 		}
+		Map m = map.mapCopy();
+		m.clearMap();
+		System.out.println("New");
+		System.out.println(m);
+		System.out.println("OG");
+		System.out.println(map);
+		**/
+		Player p = map.getPlayer();
+
+		Scanner in = new Scanner(System.in);
+		DirectionType d = null;
+		System.out.println(map);
+		while(!p.gameWon() && !p.isDead()) {
+			String direction = in.nextLine();
+			switch(direction) {
+			case "w":
+				d = DirectionType.up;
+				break;
+			case "s":
+				d = DirectionType.down;
+				break;
+			case "a":
+				d = DirectionType.left;
+				break;
+			case "d":
+				d = DirectionType.right;
+				break;
+			}
+			p.move(d);
+			System.out.println(map);
+			//System.out.println(p.checkInventory(ItemType.KEY, "RED"));
+			//p.removeItem(ItemType.KEY, "RED");
+			//System.out.println(p.checkInventory(ItemType.KEY, "RED"));
+		}
+		
 	}
 
 }

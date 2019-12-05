@@ -1,18 +1,36 @@
 
-public class Enemy {
+
+public abstract class Enemy {
 	private int xCoord;
 	private int yCoord;
-	//dy and dx are to choose the direction the enemy is about to move in. multiplying this by -1 will change the direction
+	// dy and dx are to choose the direction the enemy is about to move in.
+	// multiplying this by -1 will change the direction
 	private int dy;
 	private int dx;
 	private int nextXCoord;
 	private int nextYCoord;
-	public Enemy(int xCoord,int yCoord, int dy, int dx ) {
+	private Map map;
+	
+	public Enemy(int xCoord, int yCoord, int dy, int dx, Map map) {
 		this.xCoord = xCoord;
 		this.yCoord = yCoord;
 		this.dy = dy;
 		this.dx = dx;
-		updateNext();
+		this.map = map;
+		//this.directionWall = directionWall;
+		//this.mapCopy = map.mapCopy().mapCharArray();
+	}
+	public int getXCoord() {
+		return this.xCoord;
+	}
+	public void setXCoord(int xCoord) {
+		this.xCoord = xCoord;
+	}
+	public int getYCoord() {
+		return this.yCoord;
+	}
+	public void setYCoord(int yCoord) {
+		this.yCoord = yCoord;
 	}
 	public int getDy() {
 		return dy;
@@ -26,67 +44,51 @@ public class Enemy {
 	public void setDx(int dx) {
 		this.dx = dx;
 	}
-	public int getxCoord() {
-		return xCoord;
-	}
-	public void setxCoord(int xCoord) {
-		this.xCoord = xCoord;
-	}
-	public int getyCoord() {
-		return yCoord;
-	}
-	public void setyCoord(int yCoord) {
-		this.yCoord = yCoord;
-	}
-	public void updateNext() {
-		nextXCoord = xCoord+dx;
-		nextYCoord = yCoord+dy;
-	}
-	public void changeDirection() {
-		setDy(getDy()*-1);
-		setDx(getDx()*-1);
-	}
-	public void executeMove() {
-		//System.out.println("yeet");
-		//System.out.println("help "+ getyCoord()+ " " + getxCoord());
-		setxCoord(getxCoord()+getDx());
-		setyCoord(getyCoord()+getDy());
-		updateNext();
-		//System.out.println("getnextyx " + getNextYCoord() + " " + getNextXCoord());
-		//System.out.println("help "+ getyCoord()+ " " + getxCoord());
-	}
-	//map.getCell(getNextXCoord(), getNextYCoord()).getCellType()
-	public boolean checkCollision(CellType nextCell) {
-		if (nextCell.equals(CellType.FLOOR_CELL)){
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-	
-	public void simpleLineAI(CellType nextCell) {
-		if (checkCollision(nextCell)) {
-			changeDirection();
-		}
-		executeMove();
-	}
-	//public int greaterMagnitudeCalc(int playerXCoord, int playerYCoord) {
-	//	if () {
-	//}
-	
-	public void dumbPlayerFinderAI(int playerXCoord, int playerYCoord, CellType nextCell) {
-		
-			
-		
-	}
-	
 	public int getNextXCoord() {
 		return nextXCoord;
+	}
+	public void setNextXCoord(int nextXCoord) {
+		this.nextXCoord = nextXCoord;
 	}
 	public int getNextYCoord() {
 		return nextYCoord;
 	}
+	public void setNextYCoord(int nextYCoord) {
+		this.nextYCoord = nextYCoord;
+	}
+	public Map getMap() {
+		return map;
+	}
+	
+	
+	public abstract void move(int playerXCoord, int playerYCoord) ;
+		
+	
+	
+	public void updateNext() {
+		nextXCoord = xCoord + dx;
+		nextYCoord = yCoord + dy;
+	}
+
+	public void executeMove() {
+		setXCoord(getXCoord() + getDx());
+		setYCoord(getYCoord() + getDy());
+		updateNext();
+		// System.out.println("getnextyx " + getNextYCoord() + " " + getNextXCoord());
+		// System.out.println("help "+ getYCoord()+ " " + getXCoord());
+	}
+	public boolean checkCollision(CellType nextCell) {
+		if (nextCell.equals(CellType.FLOOR_CELL)) {
+			return false;
+		} else {
+			// System.out.println("end my suffering");
+			// System.out.println(nextCell);
+			return true;
+		}
+	}
+
+
+
 
 
 }
