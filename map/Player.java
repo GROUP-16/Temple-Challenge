@@ -52,11 +52,9 @@ public class Player {
 		boolean a = false;
 		Item I = null;
 		for (Item i : this.items) {
-			System.out.println("GAY");
 			ItemType itemType = i.getItemType();
-			
-			if (!a) { //only 1 item is removed 
-				if(itemType == itemToRemove && i.getColour().equals(condition)) {
+			if (!a) { //only 1 item is removed
+				if(itemType == itemToRemove && i.getColour() == condition) {
 					I = i;
 					//if item type is the same and item condition is the same
 					a = true; //once one item has been removed no more items can be removed
@@ -64,7 +62,10 @@ public class Player {
 				}
 			}
 		}
-		items.remove(I);
+		if(!(I == null)) {
+			items.remove(I);
+		}
+		
 			
 	}
 	
@@ -168,12 +169,13 @@ public class Player {
 				int requirement = Integer.parseInt(door.getCondition());
 				if(!(counter < requirement)) {
 					m.replaceCell(newX, newY);  //X is row Y is Column 
-					this.x = newX;
-					this.y = newY;
 					//Remove tokens from player inventory
 					for(int i = 0; i < requirement; i++) {
-						removeItem(ItemType.TOKEN, null);
+						System.out.println("Q");
+						removeItem(ItemType.TOKEN, null);						
 					}
+					this.x = newX;
+					this.y = newY;
 					
 				} 
 			}
