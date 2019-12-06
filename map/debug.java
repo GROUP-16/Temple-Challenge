@@ -18,7 +18,7 @@ public class debug {
 		//Item t = (Item) map.getCell(0, 0);
 		//System.out.println(t.getColour());
 		//.out.println(t.getItemType());
-		map.readFile("testFile.txt");
+		map.readFile("testFile2.txt");
 		//System.out.println(map.getCell(6, 8).getCellType());
 		/**
 		System.out.println(map);
@@ -44,6 +44,9 @@ public class debug {
 
 		Scanner in = new Scanner(System.in);
 		DirectionType d = null;
+		Door door = (Door) map.getCell(2, 5);
+		System.out.println(door.getDoorType());
+		System.out.println(door.getCondition());
 		System.out.println(map);
 		while(!p.gameWon() && !p.isDead()) {
 			String direction = in.nextLine();
