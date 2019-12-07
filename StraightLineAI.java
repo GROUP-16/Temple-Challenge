@@ -6,13 +6,13 @@ package application;
  */
 
 public class StraightLineAI extends Enemy{
-	private String type = "STRAIGHT";
+	private EnemyType type =EnemyType.STRAIGHT;
 	public StraightLineAI(int xCoord, int yCoord, int dy, int dx, Map map) {
 		super(xCoord, yCoord, dy, dx, map);
 		changeDirection();
 	}
 	
-	public String getEnemyType() {
+	public EnemyType getEnemyType() {
 		return type;
 	}
 	/**

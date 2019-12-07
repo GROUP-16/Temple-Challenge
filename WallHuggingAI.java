@@ -6,14 +6,14 @@ package application;
  */
 public class WallHuggingAI extends Enemy{
 	private String directionWall;
-	private String type = "WALLHUGGER";
+	private EnemyType type =EnemyType.WALLHUGGER;
 	
 	public WallHuggingAI(int xCoord, int yCoord, int dy, int dx, Map map,String directionWall) {
 		super(xCoord, yCoord, dy, dx, map);
 		this.directionWall = directionWall;
 	}
 	
-	public String getEnemyType() {
+	public EnemyType getEnemyType() {
 		return type;
 	}
 	

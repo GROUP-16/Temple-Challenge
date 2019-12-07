@@ -62,7 +62,7 @@ public abstract class Enemy {
 	
 	public abstract void move(int playerXCoord, int playerYCoord);
 		
-	public abstract String getEnemyType();
+	public abstract EnemyType getEnemyType();
 	
 	public void updateNext() {
 		nextXCoord = xCoord + dx;

@@ -6,11 +6,11 @@ package application;
  *between itself and the player as much as possible without making an illegal move
  */
 public class DumbPlayerFinderAI extends Enemy{
-	private String type = "DUMBTARGETNG";
+	private EnemyType type = EnemyType.DUMBTARGETNG;
 	public DumbPlayerFinderAI(int xCoord, int yCoord, int dy, int dx, Map map) {
 		super(xCoord, yCoord, dy, dx, map);
 	}
-	public String getEnemyType() {
+	public EnemyType getEnemyType() {
 		return type;
 	}
 	/**

@@ -24,7 +24,7 @@ public class SmartAI extends Enemy {
 	private List<MapNode> path;
 	private MapNode now;
 	private int xend, yend;
-	private String type = "SMART";
+	private EnemyType type =EnemyType.SMART;
 
 	public SmartAI(int xCoord, int yCoord, int dy, int dx, Map map) {
 		super(xCoord, yCoord, dx, dx, map);
@@ -35,7 +35,7 @@ public class SmartAI extends Enemy {
 		this.mapCopy = map.getMap();
 	}
 	
-	public String getEnemyType() {
+	public EnemyType getEnemyType() {
 		return type;
 	}
 	/**
