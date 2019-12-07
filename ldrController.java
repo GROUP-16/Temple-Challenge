@@ -22,10 +22,20 @@ import javafx.stage.Stage;
 
 
 public class ldrController {
-	
+
     @FXML
     private Button btnBack;
-    
+    private void initialize() {
+    	ObservableList<String> leaderboardList = listView.getItems();
+    	try (BufferedReader reader = new BufferedReader(new FileReader(new File("leaderboardvalues.txt")))) {
+            String leaderboardToRead;
+            while ((leaderboardToRead = reader.readLine()) != null)
+            	leaderboardlist.add(leaderboardToRead);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
 	private void openMainMenu() throws IOException {
     	Stage oldStage = (Stage) btnBack.getScene().getWindow();
@@ -34,11 +44,11 @@ public class ldrController {
 		Stage stage = new Stage();
 		stage.setTitle("Main Menu");
 		stage.setScene(new Scene(root2));
-		
-		stage.show();  
+
+		stage.show();
 	}
-	
-	
+
+
    }
 
 
