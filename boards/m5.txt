@@ -1,0 +1,29 @@
+#####################
+#?   #       T#G    #
+#    #  ########### #
+###  #       R      #
+#B  ## ####################
+#    #S      S     D#DWWWW#
+#### ###U           #FFFT #
+#L                  #DWWWW#
+#M         T       R#######
+#FFFFF              #DFFFF#
+#  T F              #WWWT #
+#K   FS            K#FFFFF#
+###########################
+
+# = wall
+Space = ground
+G = goal
+W = water cell
+F = fire cell
+D = door
+P = teleporter
+T = token
+K = key
+B = fire boots
+S = water flippers
+R = wall riding enemy
+L = straight line enemy
+U = Dumb targeting enemy
+M = Smart targeting enemy
