@@ -1,3 +1,4 @@
+package application;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -10,8 +11,8 @@ import java.util.ArrayList; //using for creating enemies
  *
  *
  *
- *X represents the Column 
- *Y Represents the row 
+ *X represents the row 
+ *Y Represents the column 
  */
 
 public class Map {
@@ -86,6 +87,11 @@ public class Map {
 		return " ";
 	}
 	
+	/**
+	 * Method to get the current map state in the form of Characters 
+	 * @return A 2d char array that represents the current state of the map
+	 * with enemies and player on it 
+	 */
 	public char[][] mapCharArray(){
 		char outputString[][] = new char[50][50];
 		int x = 0; //counters
@@ -104,7 +110,18 @@ public class Map {
 		for(Enemy enemy: enemies) {
 			x = enemy.getXCoord();
 			y = enemy.getYCoord();
-			outputString[y][x] = 'E';
+			String s = enemy.getEnemyType();
+			char enemyChar= 'E';
+			if (s.equals("STRAIGHT")) {
+				enemyChar = 'S';
+			} else if(s.equals("WALLHUGGER")) {
+				enemyChar = 'H';
+			} else if(s.equals("DUMBTARGETNG")) {
+				enemyChar = '*';
+			} else if(s.equals("SMART")) {
+				enemyChar = 'R';
+			}
+			outputString[y][x] = enemyChar;
 		}
 		
 		x = player.getX();
@@ -132,6 +149,10 @@ public class Map {
 		return this.cells;
 	}
 	
+	/**
+	 * Method to return a Map object that is identical to the main map
+	 * @return A map object that is identical to the main map 
+	 */
 	public Map mapCopy() {
 		Map m = new Map();
 		m.setPlayer(this.player);
@@ -193,20 +214,16 @@ public class Map {
 		clearMap();
 		int x = 0; //counter
 		String l = in.nextLine();
-		//System.out.println(l);
 		
 		while(l.charAt(0) != SENTINEL_CHAR) { //until the sentinel is encountered
 			Scanner line = new Scanner(l);
 			createLine(line, x);
 			x ++;
 			l = in.nextLine();
-			//System.out.println(l);
 		}
-		//l= in.nextLine();
 		
 		while(in.hasNext()) {
 			l= in.nextLine();
-			//System.out.println(l);
 			Scanner line = new Scanner(l);
 			additionalInformation(line);
 		}
@@ -221,15 +238,12 @@ public class Map {
 	private void additionalInformation(Scanner in) {
 		int x = in.nextInt();
 		int y = in.nextInt();
-		//System.out.println(x + " " + y  ); //for testing
 		Cell c = getCell(x,y);
 		CellType t = c.getCellType();//get type of cell
-		//System.out.println(t); //for testing
 		switch(t){
 		case TELEPORTER:
 			int x2 = in.nextInt();
 			int y2 = in.nextInt();
-			//Item item = (Item) map.getCell(0, 0);
 			Teleporter T = (Teleporter) c; //need to cast the type Cell into the relevant subclass 
 			T.setPairedPoint(x2, y2);
 			break;
@@ -274,7 +288,6 @@ public class Map {
 				while (in.hasNext()){
 					Item savedItem = new Item(CellType.ITEM_CELL);
 					s = in.next();
-					//Item item = (Item) map.getCell(0, 0);
 					switch(s) {
 					case(KEY_STRING):
 						String colour = in.next();
@@ -430,19 +443,34 @@ public class Map {
 		this.enemies = new ArrayList<Enemy>(); //creating new ArrayList
 		 
 	}
-
+	
+	/**
+	 * Simple getter for the player
+	 * @return player object 
+	 */
 	public Player getPlayer() {
 		return player;
 	}
-
+	
+	/**
+	 * A player setter that sets the map player object 
+	 * @param player is the player object 
+	 */
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	
+	/**
+	 * Simple setter for the map Array
+	 * @param c the 2d cell array that is to be stored 
+	 */
 	public void setMap(Cell[][] c) {
 		this.cells = c;
 	}
 	
+	/**
+	 * Simple setter for the enemy Array list
+	 * @param e the enemy array list that is to be set
+	 */
 	public void setEnemies (ArrayList<Enemy> e) {
 		this.enemies = e;
 	}

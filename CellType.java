@@ -1,4 +1,4 @@
-
+package application;
 /**
  *  Different CellTypes
  * @author George Sims

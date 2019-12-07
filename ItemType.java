@@ -1,3 +1,4 @@
+package application;
 /**
  * Different Item types
  * @author George Sims

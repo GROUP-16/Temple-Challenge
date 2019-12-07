@@ -1,3 +1,4 @@
+package application;
 /**
  * Class that is responsible for all variables and operations that are specific to a Item cell
  * @author George Sims

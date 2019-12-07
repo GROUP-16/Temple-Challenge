@@ -1,3 +1,4 @@
+package application;
 /**
  * This class is responsible for all operations and variables that are related to individual cells
  * @author George Sims 

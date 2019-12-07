@@ -1,3 +1,4 @@
+package application;
 /**
  * Class that is responsible for all variables and operations that are specific to a Door cell
  * @author George Sims

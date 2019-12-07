@@ -1,12 +1,25 @@
+package application;
 import java.util.ArrayList;
 
+/**
+ * The player class is responsible for all of the players interactions with the map
+ * e.g. the players movement, adding items to the inventory and removing items 
+ * @author George Sims
+ *
+ */
 public class Player {
 	private int x;
 	private int y;
 	private ArrayList<Item> items;
 	private Map m;
 	
-	
+	/**
+	 * A basic constructor for the player object
+	 * @param x a integer that represents the players row
+	 * @param y a integer that represents the players column
+	 * @param items the arrayList of items that represents 
+	 * @param m
+	 */
 	public Player(int x, int y, ArrayList<Item> items, Map m) {
 		this.x = x;
 		this.y = y;
@@ -14,40 +27,66 @@ public class Player {
 		this.m = m;
 	}
 
-
+	/**
+	 * A basic getter for the X value of the player 
+	 * @return X value for the player
+	 */
 	public int getX() {
 		return x;
 	}
 
-
+	/**
+	 * Simple Setter for the players X value
+	 * @param x value that is to be set
+	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
-
+	/**
+	 * Simple getter for the Y value of the player
+	 * @return Y value of the player
+	 */
 	public int getY() {
 		return y;
 	}
 
-
+	/**
+	 * Simple setter for the y value
+	 * @param y value that is to be set
+	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 
-
+	/**
+	 * Gets the players arraylist that represents the players inventory
+	 * @return the player inventory 
+	 */
 	public ArrayList<Item> getItems() {
 		return items;
 	}
 
-
+	/**
+	 * Simple setter for the player inventory 
+	 * @param items is the ArrayList to be stored
+	 */
 	public void setItems(ArrayList<Item> items) {
 		this.items = items;
 	}
-	
+	/**
+	 * Add type Item to the player Arraylist<Item>
+	 * @param i Item that is to be added
+	 */
 	private void addItem(Item i) {
 		this.items.add(i);
 	}
 	
+	/**
+	 * Method to remove an item from the players inventory 
+	 * @param itemToRemove is the Itemtype we are going to remove 
+	 * @param condition if it is a key we need to know the colour of the key
+	 */
 	public void removeItem(ItemType itemToRemove, String condition) {//if its not a key condition is null
 		boolean a = false;
 		Item I = null;
@@ -68,7 +107,12 @@ public class Player {
 		
 			
 	}
-	
+	/**
+	 * Method to check if the player has the required item in his inventory 
+	 * @param itemToCheck the Item type we are looking for
+	 * @param condition If it is a key we need to know the colour of the key
+	 * @return a boolean value that is if we have the item or not 
+	 */
 	public boolean checkInventory(ItemType itemToCheck,String condition) { //if its not a key condition is null
 		boolean a = false;
 		for (Item i : this.items) {
@@ -83,6 +127,11 @@ public class Player {
 		return a;
 	}
 	
+	/**
+	 * Method to determine where the player is going to move to and the cell he is going to
+	 * @param d the direction the player is moving to 
+	 * @return a object[] array that stores 3 values where the first is the x, second is the y and the third is the Cell the player is heading to 
+	 */
 	private Object[] newCell(DirectionType d) {
 		int newX = this.x;	//X is Row
 		int newY = this.y; //Y is Column
@@ -109,6 +158,11 @@ public class Player {
 		return tempObject;
 	}
 	
+	/**
+	 * Gets the Cell the player is trying to move to
+	 * @param temp a int[] array that stores the x and y values 
+	 * @return type Cell that represents the Cell 
+	 */
 	private Cell getNewCell(int[] temp) {
 		int newX = temp[0];
 		int newY = temp[1];
@@ -118,6 +172,11 @@ public class Player {
 		return c;
 		
 	}
+	
+	/**
+	 * The main method that is responsible for moving the player 
+	 * @param d enumerator that represents the direction the player is trying to move in 
+	 */
 	public void move(DirectionType d) {
 		Object[] tempObject = newCell(d);
 		int newX = (int) tempObject[0];
@@ -208,7 +267,11 @@ public class Player {
 		}
 	}
 
-
+	/**
+	 * A method that checks if the method is a valid move 
+	 * @param type the CellType of the cell that the player is trying to move to
+	 * @return Boolean value that represents if it is a valid move 
+	 */
 	private boolean validMove(CellType type) {
 		// only invalid cell type is a wall
 		if(type == CellType.WALL_CELL) {
@@ -217,6 +280,10 @@ public class Player {
 		return true;
 	}
 
+	/**
+	 * Checks if the player is dead
+	 * @return Boolean value that represents if the player is dead or not 
+	 */
 	public boolean isDead(){
 		boolean a = false;
 		CellType t = m.getCell(this.x, this.y).getCellType();
@@ -237,7 +304,10 @@ public class Player {
 		}
 		return a;
 	}
-	
+	/**
+	 * Checks if the game is won 
+	 * @return boolean value that represents if the game is won 
+	 */
 	public boolean gameWon() {
 		CellType t = m.getCell(this.x, this.y).getCellType();
 		if(t == CellType.GOAL_CELL) {
