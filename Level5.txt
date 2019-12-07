@@ -3,7 +3,7 @@
 ##    #  IF    P##I      W            #FFF##
 ##III D   F #### #       W   W        #FFF##
 ## ###  FFF #    #       W   W        D G ##
-## S#       #P #             W        #FFF##
+##  #       #P #             W        #FFF##
 ############################################
 ############################################
 >
@@ -19,3 +19,4 @@
 4 20 ENEMY STRAIGHT UP
 3 31 ENEMY STRAIGHT DOWN
 5 34 ENEMY SMART
+3 5 ENEMY SMART
