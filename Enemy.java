@@ -1,3 +1,4 @@
+package application;
 
 
 public abstract class Enemy {
@@ -17,8 +18,6 @@ public abstract class Enemy {
 		this.dy = dy;
 		this.dx = dx;
 		this.map = map;
-		//this.directionWall = directionWall;
-		//this.mapCopy = map.mapCopy().mapCharArray();
 	}
 	public int getXCoord() {
 		return this.xCoord;
@@ -64,7 +63,6 @@ public abstract class Enemy {
 	public abstract void move(int playerXCoord, int playerYCoord) ;
 		
 	
-	
 	public void updateNext() {
 		nextXCoord = xCoord + dx;
 		nextYCoord = yCoord + dy;
@@ -74,15 +72,11 @@ public abstract class Enemy {
 		setXCoord(getXCoord() + getDx());
 		setYCoord(getYCoord() + getDy());
 		updateNext();
-		// System.out.println("getnextyx " + getNextYCoord() + " " + getNextXCoord());
-		// System.out.println("help "+ getYCoord()+ " " + getXCoord());
 	}
 	public boolean checkCollision(CellType nextCell) {
 		if (nextCell.equals(CellType.FLOOR_CELL)) {
 			return false;
 		} else {
-			// System.out.println("end my suffering");
-			// System.out.println(nextCell);
 			return true;
 		}
 	}

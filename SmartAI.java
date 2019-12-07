@@ -1,3 +1,18 @@
+/**
+ * @author rosettacode
+ * @author Alex Masood
+ * https://rosettacode.org/wiki/A*_search_algorithm#Java
+ * Copyright (c)  2019 Alex Masood.
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2
+  or any later version published by the Free Software Foundation;
+  with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+  Texts.  A copy of the license is included in the section entitled "GNU
+  Free Documentation License".
+ * GNU Free Documentation License
+   https://www.gnu.org/licenses/old-licenses/fdl-1.2.html
+ */
+package application;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +37,6 @@ public class SmartAI extends Enemy {
 	public void move(int playerXCoord, int playerYCoord) {
 		findPathTo(playerXCoord, playerYCoord);
 
-		// System.out.println(path.get(1).getX()+" "+path.get(1).getY());
 		if (this.path.isEmpty()) {
 			List<String> randomMoveList = new ArrayList<String>();
 
@@ -68,9 +82,7 @@ public class SmartAI extends Enemy {
 
 		if (!path.isEmpty()) {
 			this.path.remove(0);
-			//System.out.println(this.path.toString());
 			if (!path.isEmpty()) {
-				//System.out.println(this.path.get(0).getY() +" "+this.path.get(0).getX());
 
 				this.setXCoord(this.path.get(0).getX());
 				this.setYCoord(this.path.get(0).getY());
@@ -88,53 +100,21 @@ public class SmartAI extends Enemy {
 		addNeigborsToOpenList();
 		while (this.now.x != this.xend || this.now.y != this.yend) {
 			if (this.open.isEmpty()) { // Nothing to examine
-				//System.out.println("test");
 				return null;
 			}
 			this.now = this.open.get(0); // get first node (lowest f score)
 			this.open.remove(0); // remove it
 			this.closed.add(this.now); // and add to the closed
 			addNeigborsToOpenList();
-			// System.out.println("help");
 		}
-		this.path.add(0, this.now);
-		// System.out.println(this.now.x);
-		// System.out.println(this.getXCoord());
-		// System.out.println(this.now.y);
-		// System.out.println(this.getYCoord());
-		//boolean check = true;
-		while ((this.now.x != this.getXCoord() || this.now.y != this.getYCoord())) {// && check) {
-			/*
-			System.out.println(this.now.x);
-			System.out.println(this.getXCoord());
-			System.out.println(this.now.y);
-			System.out.println(this.getYCoord());
-
-			System.out.println(this.path);
-			*/
+		while ((this.now.x != this.getXCoord() || this.now.y != this.getYCoord())) {
 			this.now = this.now.parent;
 			this.path.add(0, this.now);
-			/*
-			if (this.now.x == this.getXCoord() || this.now.y == this.getYCoord()) {
-				check = false;
-			} else {
-				this.now = this.now.parent;
-				this.path.add(0, this.now);
-			}
-			*/
-			/*
-			 * System.out.println("after "+this.now.x);
-			 * System.out.println("after "+this.getXCoord());
-			 * System.out.println("after "+this.now.y);
-			 * System.out.println("after "+this.getYCoord()); System.out.println(this.path);
-			 */
 		}
-		// System.out.println(this.path);
-		// System.out.println("help");
 		return this.path;
 	}
 
-	/*
+	/**
 	 ** Looks in a given List<> for a node
 	 **
 	 ** @return (bool) NeightborInListFound
@@ -143,18 +123,16 @@ public class SmartAI extends Enemy {
 		return array.stream().anyMatch((n) -> (n.x == node.x && n.y == node.y));
 	}
 
-	/*
+	/**
 	 ** Calulate distance between this.now and xend/yend
 	 **
 	 ** @return (int) distance
 	 */
 	private double distance(int dx, int dy) {
-		return Math.abs(this.now.x + dx - this.xend) + Math.abs(this.now.y + dy - this.yend); // else return "Manhattan
-																								// distance"
+		return Math.abs(this.now.x + dx - this.xend) + Math.abs(this.now.y + dy - this.yend); // else return "Manhattan																						// distance"
 	}
 
 	private void addNeigborsToOpenList() {
-		// System.out.println(mapCopy[1]);
 		MapNode node;
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {
@@ -162,7 +140,6 @@ public class SmartAI extends Enemy {
 					continue; // skip if diagonal movement is not allowed
 				}
 				node = new MapNode(this.now, this.now.x + x, this.now.y + y, this.now.g, this.distance(x, y));
-				//System.out.println("throw me off this cliff" +(this.now.y + y) +" y x "+ (this.now.x + x));
 				if ((x != 0 || y != 0) // not this.now
 
 						&& this.now.x + x >= 0 && this.now.x + x < this.mapCopy[0].length // check mapCopy boundaries
@@ -172,26 +149,13 @@ public class SmartAI extends Enemy {
 																												// is
 																												// walkable
 						&& !findNeighborInList(this.open, node) && !findNeighborInList(this.closed, node)) { // if not
-					//System.out.println(this.now.stringTo()); // already
-					// done
+
 					node.g = node.parent.g + 1.; // Horizontal/vertical cost = 1.0
 
-					// diagonal cost = sqrt(hor_cost² + vert_cost²)
-					// in this example the cost would be 12.2 instead of 11
-					/*
-					 * if (diag && x != 0 && y != 0) { node.g += .4; // Diagonal movement cost = 1.4
-					 * }
-					 */
 					this.open.add(node);
 				}
 			}
 		}
 		Collections.sort(this.open);
-	}/*
-		 * public static void main(String[] args) { char[][] map = {
-		 * {'#','#','#','#','#'}, {'#',' ',' ',' ','#'}, {'#',' ','#',' ','#'}, {'#','
-		 * ','#',' ','#'}, {'#',' ','#','E','#'}, {'#','#','#','#','#'}, }; //SmartAI E
-		 * = new SmartAI(4,3,0,0,map); }
-		 */
-
+	}
 }
