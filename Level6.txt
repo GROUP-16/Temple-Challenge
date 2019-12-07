@@ -2,9 +2,9 @@
 ###################################
 ##            D                 P##
 ##            #####################
-##            #P B #             ##
-##P           ####P#             ##
-###############                  ##
+##            #P I #             ##
+##P###############P#             ##
+#######                          ##
 ##P   #                          ##
 ##    #                          ##
 ##I   #      FFFFFFF             ##
@@ -31,17 +31,13 @@
 4 17 FIRE_BOOTS
 5 18 11 16
 11 14 FLIPPER
-12 8 ENEMY LINE LEFT
-20 8 ENEMY LINE RIGHT
-12 14 ENEMY LINE LEFT
-20 14 ENEMY LINE RIGHT 
-12 15 ENEMY LINE DOWN
-20 15 ENEMY LINE DOWN
-12 7 ENEMY LINE UP
-20 7 ENEMY LINE UP
-32 19 ENEMY SMART 
-32 4 ENEMY SMART 
-
-
-
- 
+8 12 ENEMY STRAIGHT LEFT
+8 20 ENEMY STRAIGHT RIGHT
+14 12 ENEMY STRAIGHT LEFT
+14 20 ENEMY STRAIGHT RIGHT 
+15 12 ENEMY STRAIGHT DOWN
+15 20 ENEMY STRAIGHT DOWN
+7 12 ENEMY STRAIGHT UP
+7 20 ENEMY STRAIGHT UP
+19 32 ENEMY SMART 
+4 32 ENEMY SMART 
