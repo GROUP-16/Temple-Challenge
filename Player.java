@@ -118,9 +118,12 @@ public class Player {
 		for (Item i : this.items) {
 			ItemType itemType = i.getItemType();
 			if (!a) { //only 1 item needs to be found
-				if(itemType == itemToCheck && i.getColour().equals(condition)) { 
-					//if item type is the same and item condition is the same
-					a = true; //once one item has been found we don't need to find anymore
+				if(i.getColour() == null) {
+					if(itemType == itemToCheck) {
+						a = true;
+					}
+				} else if(itemType == itemToCheck && i.getColour().equals(condition)) {
+					a = true;
 				}
 			}
 		}
