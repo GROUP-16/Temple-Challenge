@@ -30,7 +30,6 @@ public class Map {
 	private final char TELEPORTER_CHAR = 'P';
 	private final char GOAL_CHAR = 'G';
 	private final char ITEM_CHAR = 'I';
-	private final char ENEMY_CHAR = 'E';
 	
 	
 	//constants for additional information
@@ -39,6 +38,7 @@ public class Map {
 	private final String FIRE_BOOT_STRING = "FIRE_BOOTS";
 	private final String FLIPPER_STRING = "FLIPPER";
 	private final String TOKEN_STRING = "TOKEN";
+	private final String ENEMY_STRING = "ENEMY";
 
 	/**
 	 * Basic constructor that initialises the map and Cell array to a default size of 50*50 
@@ -302,7 +302,50 @@ public class Map {
 				}
 				this.player = new Player(x,y,i,this);
 			} else {
-				//enemy stuff
+				if(s.equals(ENEMY_STRING)) {
+					System.out.println("n");
+					String enemyType = in.next();
+					System.out.println(enemyType);
+					switch(enemyType) {
+						case "SMART":
+							SmartAI E1 = new SmartAI(y,x,0,0,this);
+							enemies.add(E1);
+							//System.out.println("smart at " + x + " x and y " + y);
+							break;
+						case "STRAIGHT":
+							int yDirection = 0;
+							int xDirection = 0;
+							switch(in.next()) {
+							case "UP":
+								yDirection = -1;
+								break;
+							case "DOWN":
+								yDirection = 1;
+								break;
+							case "LEFT":
+								xDirection = -1;
+								break;
+							case "RIGHT":
+								xDirection = 1;
+								break;
+							default:
+								;
+							}
+							StraightLineAI E2 = new StraightLineAI(y,x,yDirection,xDirection,this);
+							enemies.add(E2);
+							break;
+						case "WALLHUGGER":
+							WallHuggingAI E3 = new WallHuggingAI(y,x,0,0,this,in.next());
+							enemies.add(E3);
+							break;
+						case "DUMBTARGETNG":
+							//add an alt route if shortest isnt possible
+							DumbPlayerFinderAI E4 = new DumbPlayerFinderAI(y,x,0,0,this);
+							enemies.add(E4);
+							break;
+						default:
+					}
+				}
 			} 
 			
 		default:
@@ -347,30 +390,6 @@ public class Map {
 				break;
 			case ITEM_CHAR:
 				t = CellType.ITEM_CELL;
-				break;
-			case ENEMY_CHAR:
-				t = CellType.FLOOR_CELL;
-				String enemyType = "Smart";
-				switch(enemyType) {
-					case "Smart":
-						SmartAI E1 = new SmartAI(i,x,0,0,this);
-						enemies.add(E1);
-						break;
-					case "Straight":
-						StraightLineAI E2 = new StraightLineAI(i,x,0,-1,this);
-						enemies.add(E2);
-						break;
-					case "WallHugger":
-						WallHuggingAI E3 = new WallHuggingAI(i,x,0,0,this,"upRight");
-						enemies.add(E3);
-						break;
-					case "Dumb":
-						//add an alt route if shortest isnt possible
-						DumbPlayerFinderAI E4 = new DumbPlayerFinderAI(i,x,0,0,this);
-						enemies.add(E4);
-						break;
-					default:
-				}
 				break;
 			default:
 				t = CellType.WALL_CELL;
