@@ -13,10 +13,6 @@ public class StraightLineAI extends Enemy{
 	}
 	public void move(int playerXCoord, int playerYCoord) {
 		if (checkCollision(getMap().getCell(getNextYCoord(), getNextXCoord()).getCellType())) {
-			if (checkCollision(getMap().getCell(getYCoord() + getDx() * -1, getXCoord() + getDy() * -1).getCellType())) {
-				//setDy(0);
-				//setDx(0);
-			}
 			changeDirection();
 
 		}
