@@ -1,3 +1,4 @@
+package application;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -39,7 +40,8 @@ public class Map {
 	private final String FIRE_BOOT_STRING = "FIRE_BOOTS";
 	private final String FLIPPER_STRING = "FLIPPER";
 	private final String TOKEN_STRING = "TOKEN";
-
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
+	private final String ENEMY_STRING = "ENEMY";
 	/**
 	 * Basic constructor that initialises the map and Cell array to a default size of 50*50 
 	 */
@@ -71,11 +73,11 @@ public class Map {
 			y = enemy.getYCoord();
 			outputString[y][x] = 'E';
 		}
-		
+		/*
 		x = player.getX();
 		y = player.getY();
 		outputString[x][y] = 'P';
-		
+		*/
 		for(char[] X : outputString) {
 			for(char Y : X) {
 				System.out.print(Y);
@@ -225,6 +227,7 @@ public class Map {
 		Cell c = getCell(x,y);
 		CellType t = c.getCellType();//get type of cell
 		//System.out.println(t); //for testing
+		System.out.println(t.toString());
 		switch(t){
 		case TELEPORTER:
 			int x2 = in.nextInt();
@@ -297,18 +300,61 @@ public class Map {
 					default:
 						savedItem.setItemType(ItemType.TOKEN);
 						i.add(savedItem);
-						break;//default item in case of error in map file
+						//default item in case of error in map file
 					}
 				}
-				this.player = new Player(x,y,i);
-			} else {
-				//enemy stuff
-			} 
-			
+				//this.player = new Player(x,y,i);
+			}
+			else {
+				if(s.equals(ENEMY_STRING)) {
+					System.out.println("n");
+					String enemyType = in.next();
+					System.out.println(enemyType);
+					switch(enemyType) {
+						case "SMART":
+							SmartAI E1 = new SmartAI(y,x,0,0,this);
+							enemies.add(E1);
+							//System.out.println("smart at " + x + " x and y " + y);
+							break;
+						case "STRAIGHT":
+							int yDirection = 0;
+							int xDirection = 0;
+							switch(in.next()) {
+							case "UP":
+								yDirection = -1;
+								break;
+							case "DOWN":
+								yDirection = 1;
+								break;
+							case "LEFT":
+								xDirection = -1;
+								break;
+							case "RIGHT":
+								xDirection = 1;
+								break;
+							default:
+								;
+							}
+							StraightLineAI E2 = new StraightLineAI(y,x,yDirection,xDirection,this);
+							enemies.add(E2);
+							break;
+						case "WALLHUGGER":
+							WallHuggingAI E3 = new WallHuggingAI(y,x,0,0,this,in.next());
+							enemies.add(E3);
+							break;
+						case "DUMBTARGETNG":
+							//add an alt route if shortest isnt possible
+							DumbPlayerFinderAI E4 = new DumbPlayerFinderAI(y,x,0,0,this);
+							enemies.add(E4);
+							break;
+						default:
+					}
+				}
+			}
+			break;
 		default:
-			break;			
-		}
-		
+			;			
+		}	
 	}
 	
 	/**
@@ -348,6 +394,7 @@ public class Map {
 			case ITEM_CHAR:
 				t = CellType.ITEM_CELL;
 				break;
+				/*
 			case ENEMY_CHAR:
 				t = CellType.FLOOR_CELL;
 				String enemyType = "Smart";
@@ -371,7 +418,8 @@ public class Map {
 						break;
 					default:
 				}
-				break;
+				*/
+				//break;
 			default:
 				t = CellType.WALL_CELL;
 			}
