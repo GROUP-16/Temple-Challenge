@@ -5,7 +5,7 @@
  */
 public class Item extends Cell {
 	private ItemType itemType;
-	private String colour;
+	private String colour = null;
 	
 	/**
 	 * Simple constructor that calls the super classes constructor 

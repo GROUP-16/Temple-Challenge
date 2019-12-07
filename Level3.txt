@@ -1,0 +1,23 @@
+#################
+#################
+##    #     DDG##
+##    #  ########
+####  #        ##
+##I  ######WWWW##
+##      #   WWI##
+#####   #U   WW##
+##L           W##
+##        WWWWW##
+##FFFFF   WFFFF##
+##   IF   WFFIF##
+##    F   WFFFF##
+#################
+#################
+>
+2 2 START
+5 2 FIRE_BOOTS
+11 5 FLIPPER
+2 13 K RED
+2 12 K GREEN
+6 14 KEY RED
+11 5 KEY GREEN
