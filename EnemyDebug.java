@@ -19,6 +19,8 @@ public class EnemyDebug {
 			
 			for (Enemy  enemyX : enemies) {
 			    enemyX.move(1,1);
+			    System.out.println(enemyX.getXCoord() +" is the x and "+enemyX.getYCoord()+" is the y");
+			    System.out.println(enemyX.getEnemyType());
 			}
 			
 			x++;

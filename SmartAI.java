@@ -24,6 +24,7 @@ public class SmartAI extends Enemy {
 	private List<MapNode> path;
 	private MapNode now;
 	private int xend, yend;
+	private String type = "SMART";
 
 	public SmartAI(int xCoord, int yCoord, int dy, int dx, Map map) {
 		super(xCoord, yCoord, dx, dx, map);
@@ -33,7 +34,15 @@ public class SmartAI extends Enemy {
 		this.now = new MapNode(null, xCoord, yCoord, 0, 0);
 		this.mapCopy = map.getMap();
 	}
-
+	
+	public String getEnemyType() {
+		return type;
+	}
+	/**
+	 * @param int player x and y coordinate
+	 * an attempt to get a path from the enemy to the player is first done
+	 * if no path can be found then the enemy walks in a random direction that is legal
+	 */
 	public void move(int playerXCoord, int playerYCoord) {
 		findPathTo(playerXCoord, playerYCoord);
 

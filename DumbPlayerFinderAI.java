@@ -1,11 +1,23 @@
 package application;
-
+/**
+ * 
+ * @author Alex Masood
+ *This class holds the strategy to move the enemy as close to the player as possible by lowering the distance
+ *between itself and the player as much as possible without making an illegal move
+ */
 public class DumbPlayerFinderAI extends Enemy{
-	
+	private String type = "DUMBTARGETNG";
 	public DumbPlayerFinderAI(int xCoord, int yCoord, int dy, int dx, Map map) {
 		super(xCoord, yCoord, dy, dx, map);
 	}
-
+	public String getEnemyType() {
+		return type;
+	}
+	/**
+	 * @param int player x and y coordinates
+	 * the largest of the distance between the player and enemy's x and y coordinate 
+	 * will be decremented unless decrementing the coordinate causes an illegal move.
+	 */
 	public void move(int playerXCoord, int playerYCoord) {
 		if (playerXCoord == getXCoord() && playerYCoord == getYCoord()) {
 			setDy(0);

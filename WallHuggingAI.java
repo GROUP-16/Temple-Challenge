@@ -1,11 +1,20 @@
 package application;
-
+/**
+ * 
+ * @author Alex Masood
+ *This class holds the strategy to keep the enemy attached to a wall
+ */
 public class WallHuggingAI extends Enemy{
 	private String directionWall;
+	private String type = "WALLHUGGER";
 	
 	public WallHuggingAI(int xCoord, int yCoord, int dy, int dx, Map map,String directionWall) {
 		super(xCoord, yCoord, dy, dx, map);
 		this.directionWall = directionWall;
+	}
+	
+	public String getEnemyType() {
+		return type;
 	}
 	
 	public String getDirectionWall() {
@@ -15,11 +24,12 @@ public class WallHuggingAI extends Enemy{
 	public void setDirectionWall(String directionWall) {
 		this.directionWall = directionWall;
 	}
-
-
+	
+	/**
+	 * @param x and y coordinate of the player (can be left as any integer)
+	 * the main move method swaps between the direction and wall its attached to other combinations
+	 */
 	public void move(int playerXCoord, int playerYCoord) {
-		// states in direction and hugging wall
-		// cry
 		switch (getDirectionWall()) {
 		case "upLeft":
 			upLeft();
@@ -49,7 +59,12 @@ public class WallHuggingAI extends Enemy{
 		}
 		executeMove();
 	}
-
+	
+	/**
+	 * checks if the next direction is a valid move and then checks if the next move has a wall
+	 * that is the same as the one it was attached to.
+	 * the method uses this info to determine what to swap the direction and wall to.
+	 */
 	public void upLeft() {
 		setDx(0);
 		setDy(-1);
@@ -71,7 +86,11 @@ public class WallHuggingAI extends Enemy{
 			}
 		}
 	}
-
+	/**
+	 * checks if the next direction is a valid move and then checks if the next move has a wall
+	 * that is the same as the one it was attached to.
+	 * the method uses this info to determine what to swap the direction and wall to.
+	 */
 	public void downRight() {
 		setDx(0);
 		setDy(1);
@@ -92,7 +111,11 @@ public class WallHuggingAI extends Enemy{
 			}
 		}
 	}
-
+	/**
+	 * checks if the next direction is a valid move and then checks if the next move has a wall
+	 * that is the same as the one it was attached to.
+	 * the method uses this info to determine what to swap the direction and wall to.
+	 */
 	public void leftDown() {
 		setDx(-1);
 		setDy(0);
@@ -113,7 +136,11 @@ public class WallHuggingAI extends Enemy{
 			}
 		}
 	}
-
+	/**
+	 * checks if the next direction is a valid move and then checks if the next move has a wall
+	 * that is the same as the one it was attached to.
+	 * the method uses this info to determine what to swap the direction and wall to.
+	 */
 	public void rightUp() {
 		setDx(1);
 		setDy(0);
@@ -134,6 +161,11 @@ public class WallHuggingAI extends Enemy{
 			}
 		}
 	}
+	/**
+	 * checks if the next direction is a valid move and then checks if the next move has a wall
+	 * that is the same as the one it was attached to.
+	 * the method uses this info to determine what to swap the direction and wall to.
+	 */
 	public void upRight() {
 		setDx(0);
 		setDy(-1);
@@ -154,6 +186,11 @@ public class WallHuggingAI extends Enemy{
 			}
 		}
 	}
+	/**
+	 * checks if the next direction is a valid move and then checks if the next move has a wall
+	 * that is the same as the one it was attached to.
+	 * the method uses this info to determine what to swap the direction and wall to.
+	 */
 	public void downLeft() {
 		setDx(0);
 		setDy(1);
@@ -174,6 +211,11 @@ public class WallHuggingAI extends Enemy{
 			}
 		}
 	}
+	/**
+	 * checks if the next direction is a valid move and then checks if the next move has a wall
+	 * that is the same as the one it was attached to.
+	 * the method uses this info to determine what to swap the direction and wall to.
+	 */
 	public void leftUp() {
 		setDx(-1);
 		setDy(0);
@@ -194,6 +236,11 @@ public class WallHuggingAI extends Enemy{
 			}
 		}
 	}
+	/**
+	 * checks if the next direction is a valid move and then checks if the next move has a wall
+	 * that is the same as the one it was attached to.
+	 * the method uses this info to determine what to swap the direction and wall to.
+	 */
 	public void rightDown() {
 		setDx(1);
 		setDy(0);
