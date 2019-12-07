@@ -12,6 +12,7 @@ public class gameLoop {
 		
 		Scanner in = new Scanner(System.in);
 		DirectionType d = null;
+		System.out.println(map);
 		while(!player.gameWon() && !player.isDead()) {
 			String direction = in.nextLine();
 			switch(direction) {
@@ -32,6 +33,7 @@ public class gameLoop {
 			for(Enemy e : enemies) {
 				e.move(player.getX(), player.getY());
 			}
+			System.out.println(map);
 		}		
 
 	}
