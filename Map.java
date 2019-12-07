@@ -303,14 +303,11 @@ public class Map {
 				this.player = new Player(x,y,i,this);
 			} else {
 				if(s.equals(ENEMY_STRING)) {
-					System.out.println("n");
 					String enemyType = in.next();
-					System.out.println(enemyType);
 					switch(enemyType) {
 						case "SMART":
 							SmartAI E1 = new SmartAI(y,x,0,0,this);
 							enemies.add(E1);
-							//System.out.println("smart at " + x + " x and y " + y);
 							break;
 						case "STRAIGHT":
 							int yDirection = 0;
