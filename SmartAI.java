@@ -57,7 +57,6 @@ public class SmartAI extends Enemy {
 				
 			}
 			String place = randomMoveList.get((int)(Math.random() * ((randomMoveList.size() - 0))));
-			System.out.println(place);
 			switch(place) {
 			case "Down":
 				this.setYCoord(getYCoord()+1);

@@ -6,7 +6,7 @@ public class EnemyDebug {
 	public static void main(String[] args) {
 		System.out.println("top top");
 		Map map = new Map();
-		map.readFile("testFile.txt");
+		map.readFile("Level4.txt");
 		ArrayList<Enemy> enemies = map.getEnemies();
 		
 		int x = 0;

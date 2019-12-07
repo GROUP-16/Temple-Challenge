@@ -20,8 +20,6 @@ public class WallHuggingAI extends Enemy{
 	public void move(int playerXCoord, int playerYCoord) {
 		// states in direction and hugging wall
 		// cry
-		System.out.println(getYCoord() + " for y and x is " + getXCoord());
-		System.out.println("ok");
 		switch (getDirectionWall()) {
 		case "upLeft":
 			upLeft();
@@ -48,12 +46,8 @@ public class WallHuggingAI extends Enemy{
 			downLeft();
 			break;
 		default:
-			System.out.println("nothing");
 		}
-		System.out.println("was " + getYCoord() + " for y and x is " + getXCoord());
 		executeMove();
-		System.out.println("is now " + getYCoord() + " for y and x is " + getXCoord());
-
 	}
 
 	public void upLeft() {
