@@ -163,8 +163,6 @@ public class Map {
 			 newString = newString + "\n";
 			 
 		 }
-		System.out.println(newString);
-
 		return newString;
 	}
 	
