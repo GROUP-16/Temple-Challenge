@@ -15,6 +15,28 @@ public class StraightLineAI extends Enemy{
 	public EnemyType getEnemyType() {
 		return type;
 	}
+	
+	/**
+	 * checks the direction and returns it
+	 * @return String of the direction
+	 */
+	public String getDirection() {
+		switch (getDy()) {
+		case -1:
+			return "UP";
+		case 1:
+			return "DOWN";
+		default:
+			switch (getDx()) {
+			case -1:
+				return "LEFT";
+			case 1:
+				return "RIGHT";
+			default:
+				return "";
+			}
+		}
+	}
 	/**
 	 * multiplies the direction by -1 which will make it go in the opposite direction
 	 */
@@ -27,7 +49,7 @@ public class StraightLineAI extends Enemy{
 	 * this does a check on if the next move will cause a collision with something that isnt a floor tile
 	 * if there is a collision it will change the direction
 	 */
-	public void move(int playerXCoord, int playerYCoord) {
+	public void move(int playerXCoord, int playerYCoord,Map map) {
 		if (checkCollision(getMap().getCell(getNextYCoord(), getNextXCoord()).getCellType())) {
 			changeDirection();
 
