@@ -39,7 +39,7 @@ public class SmartAI extends Enemy {
 		return type;
 	}
 	/**
-	 * @param int player x and y coordinate
+	 * @param int) player x and y coordinate
 	 * an attempt to get a path from the enemy to the player is first done
 	 * if no path can be found then the enemy walks in a random direction that is legal
 	 */
@@ -115,6 +115,7 @@ public class SmartAI extends Enemy {
 			this.closed.add(this.now); // and add to the closed
 			addNeigborsToOpenList();
 		}
+		this.path.add(0, this.now);
 		while ((this.now.x != this.getXCoord() || this.now.y != this.getYCoord())) {
 			this.now = this.now.parent;
 			this.path.add(0, this.now);
