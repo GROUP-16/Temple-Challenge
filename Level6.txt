@@ -5,7 +5,7 @@
 ##            #P I  #            ##
 ##P############## P #            ##
 #######         #   #            ##
-##P   #         #####            ##
+##P#  #         #####            ##
 ##    #                          ##
 ##I   #      FFFFFFF             ##
 #######      FFFFFFF     WWW     ##
@@ -30,6 +30,7 @@
 4 15 2 32
 4 17 FIRE_BOOTS
 5 18 11 16
+11 16 5 8
 11 14 FLIPPER
 8 12 ENEMY STRAIGHT LEFT
 8 20 ENEMY STRAIGHT RIGHT
