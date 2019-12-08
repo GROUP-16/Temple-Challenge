@@ -84,6 +84,14 @@ public class GameController {
     @FXML
     private TextField tokenTotal;
     @FXML
+    private TextField blueTotal;
+    @FXML
+    private TextField greenTotal;
+    @FXML
+    private TextField redTotal;
+    @FXML
+    private TextField yellowTotal;
+    @FXML
     private Button btnUp;
     @FXML
     private Button btnLeft;
@@ -93,10 +101,11 @@ public class GameController {
     private Button btnDown;
     
     
+    
     @FXML
     private void initialize() throws IOException {
     	
-    	newMap.readFile("C:\\Users\\conor\\eclipse-workspace\\Test Map Screen\\src\\application\\testFile.txt");
+    	newMap.readFile("src/application/Level3.txt");
     	allCells = (newMap.mapCharArray());
     	newPlayer = newMap.getPlayer();
     	x = newPlayer.getX();
@@ -211,7 +220,24 @@ public class GameController {
     	return imageLocation;
     }
     private void refreshMap(Integer y, Integer x, Map map, char[][] allCells) throws IOException {
-    
+    	if(newPlayer.isDead() == true) {
+        	Stage oldStage = (Stage) btnUp.getScene().getWindow();
+        	oldStage.close();
+    		Parent root2 = FXMLLoader.load(getClass().getResource("GameFail.fxml"));
+    		Stage stage = new Stage();
+    		stage.setTitle("Game Over");
+    		stage.setScene(new Scene(root2));
+    		stage.show();
+    	}
+    	else if(newPlayer.gameWon() == true) {
+    		Parent root2 = FXMLLoader.load(getClass().getResource("GameWin.fxml"));
+    		Stage stage = new Stage();
+    		stage.setTitle("You Win");
+    		stage.setScene(new Scene(root2));
+    		stage.show();
+
+    	}
+    	else {
     	tileX1Y1.setImage(changeTile(x-2,y-2));
     	tileX2Y1.setImage(changeTile(x-1,y-2));
     	tileX3Y1.setImage(changeTile(x,y-2));
@@ -237,19 +263,6 @@ public class GameController {
     	tileX3Y5.setImage(changeTile(x,y+2));
     	tileX4Y5.setImage(changeTile(x+1,y+2));
     	tileX5Y5.setImage(changeTile(x+2,y+2));
-    	if(newPlayer.isDead() == true) {
-        	Stage oldStage = (Stage) btnUp.getScene().getWindow();
-        	oldStage.close();
-    		Parent root2 = FXMLLoader.load(getClass().getResource("GameFail.fxml"));
-    		Stage stage = new Stage();
-    		stage.setTitle("Game Over");
-    		stage.setScene(new Scene(root2));
-    	}
-    	if(newPlayer.gameWon() == true) {
-    		Parent root2 = FXMLLoader.load(getClass().getResource("GameWin.fxml"));
-    		Stage stage = new Stage();
-    		stage.setTitle("You Win");
-    		stage.setScene(new Scene(root2));
     	}
     	}
 	
@@ -266,6 +279,10 @@ public class GameController {
     	}
     	
     	tokenTotal.setText((newPlayer.totalTokens()).toString());
+    	blueTotal.setText((newPlayer.totalBlue()).toString());
+    	greenTotal.setText((newPlayer.totalGreen()).toString());
+    	redTotal.setText((newPlayer.totalRed()).toString());
+    	yellowTotal.setText((newPlayer.totalYellow()).toString());
     	x = newPlayer.getX();
     	y = newPlayer.getY();
     	
@@ -286,6 +303,10 @@ public class GameController {
     		flippers.setImage(flip);
     	}
     	tokenTotal.setText((newPlayer.totalTokens()).toString());
+    	blueTotal.setText((newPlayer.totalBlue()).toString());
+    	greenTotal.setText((newPlayer.totalGreen()).toString());
+    	redTotal.setText((newPlayer.totalRed()).toString());
+    	yellowTotal.setText((newPlayer.totalYellow()).toString());
     	x = newPlayer.getX();
     	y = newPlayer.getY();
     	updateEnemy(x,y);
@@ -305,6 +326,10 @@ public class GameController {
     		flippers.setImage(flip);
     	}
     	tokenTotal.setText((newPlayer.totalTokens()).toString());
+    	blueTotal.setText((newPlayer.totalBlue()).toString());
+    	greenTotal.setText((newPlayer.totalGreen()).toString());
+    	redTotal.setText((newPlayer.totalRed()).toString());
+    	yellowTotal.setText((newPlayer.totalYellow()).toString());
     	x = newPlayer.getX();
     	y = newPlayer.getY();
     	updateEnemy(x,y);
@@ -323,7 +348,16 @@ public class GameController {
     		Image flip = new Image("models/Flippers.png");
     		flippers.setImage(flip);
     	}
+    	System.out.println(newPlayer.totalBlue());
+    	System.out.println(newPlayer.totalGreen());
+    	System.out.println(newPlayer.totalRed());
+    	System.out.println(newPlayer.totalYellow());
+    	
     	tokenTotal.setText((newPlayer.totalTokens()).toString());
+    	blueTotal.setText((newPlayer.totalBlue()).toString());
+    	greenTotal.setText((newPlayer.totalGreen()).toString());
+    	redTotal.setText((newPlayer.totalRed()).toString());
+    	yellowTotal.setText((newPlayer.totalYellow()).toString());
     	x = newPlayer.getX();
     	y = newPlayer.getY();
 
@@ -338,19 +372,19 @@ public class GameController {
     	ArrayList<Enemy> enemies = newMap.getEnemies();
     	for (Enemy enemyX: enemies) {
     		if(enemyX.getEnemyType().equals(EnemyType.SMART)) {
-    			enemies.remove(enemyX);
     			SmartAI E1 = new SmartAI(enemyX.getXCoord(),enemyX.getYCoord(),0,0,newMap);
+    			enemies.remove(enemyX);
 				enemies.add(E1);
     			
     		}
     		else {
-    			enemyX.move(x, y,newMap);
+    			enemyX.move(y, x,newMap);
     		}
     	}
     	
     	for (Enemy enemyX: enemies) {
     		if(enemyX.getEnemyType().equals(EnemyType.SMART)) {
-    			enemyX.move(x, y,newMap);
+    			enemyX.move(y, x,newMap);
     		}
     		
     	}

@@ -333,8 +333,9 @@ public class Player {
 		for (Item i : this.items) {
 			ItemType itemType = i.getItemType();
 			if(itemType == ItemType.KEY) {
-				if(i.getColour() == "BLUE")
-				counter ++;
+				if(i.getColour().equalsIgnoreCase("BLUE")) {
+					counter ++;
+				}
 			} 
 		}
 		return counter;
@@ -344,8 +345,9 @@ public class Player {
 		for (Item i : this.items) {
 			ItemType itemType = i.getItemType();
 			if(itemType == ItemType.KEY) {
-				if(i.getColour() == "GREEN")
-				counter ++;
+				if(i.getColour().equalsIgnoreCase("GREEN")) {
+					counter ++;
+				}
 			} 
 		}
 		return counter;
@@ -355,8 +357,9 @@ public class Player {
 		for (Item i : this.items) {
 			ItemType itemType = i.getItemType();
 			if(itemType == ItemType.KEY) {
-				if(i.getColour() == "YELLOW")
-				counter ++;
+				if(i.getColour().equalsIgnoreCase("YELLOW")) {
+					counter ++;
+				}
 			} 
 		}
 		return counter;
@@ -367,12 +370,13 @@ public class Player {
 		for (Item i : this.items) {
 			ItemType itemType = i.getItemType();
 			if(itemType == ItemType.KEY) {
-				if(i.getColour() == "RED")
-				counter ++;
+				if(i.getColour().equalsIgnoreCase("RED")) {
+					counter ++;
+				}
 			} 
 		}
 		return counter;
-	}
 	
+}
 }
 	
