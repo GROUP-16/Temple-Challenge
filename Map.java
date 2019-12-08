@@ -110,15 +110,15 @@ public class Map {
 		for(Enemy enemy: enemies) {
 			x = enemy.getXCoord();
 			y = enemy.getYCoord();
-			String s = enemy.getEnemyType();
+			EnemyType s = enemy.getEnemyType();
 			char enemyChar= 'E';
-			if (s.equals("STRAIGHT")) {
+			if (s.equals(EnemyType.STRAIGHT)) {
 				enemyChar = 'S';
-			} else if(s.equals("WALLHUGGER")) {
+			} else if(s.equals(EnemyType.WALLHUGGER)) {
 				enemyChar = 'H';
-			} else if(s.equals("DUMBTARGETNG")) {
+			} else if(s.equals(EnemyType.DUMBTARGETNG)) {
 				enemyChar = '*';
-			} else if(s.equals("SMART")) {
+			} else if(s.equals(EnemyType.SMART)) {
 				enemyChar = 'R';
 			}
 			outputString[y][x] = enemyChar;
@@ -474,7 +474,9 @@ public class Map {
 	public void setEnemies (ArrayList<Enemy> e) {
 		this.enemies = e;
 	}
+	public void getTokens(){
+		
+	}
 }
 	
 	
-
