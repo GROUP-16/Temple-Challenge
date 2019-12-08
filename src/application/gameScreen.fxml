@@ -146,6 +146,7 @@
          </image>
       </ImageView>
       <Button fx:id="btnUp" layoutX="510.0" layoutY="152.0" mnemonicParsing="false" onAction="#moveUp" prefHeight="45.0" prefWidth="62.0" text="Up" />
+      <Button fx:id="btnSave" layoutX="545" layoutY="13.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="62.0" text="Save" />
       <Button fx:id="btnBack" layoutX="17.0" layoutY="13" mnemonicParsing="false"  prefHeight="45.0" prefWidth="62.0" text="Back" />
       <Button fx:id="btnLeft" layoutX="475.0" layoutY="205.0" mnemonicParsing="false" onAction="#moveLeft" prefHeight="45.0" prefWidth="62.0" text="Left" />
       <Button fx:id="btnRight" layoutX="545.0" layoutY="205.0" mnemonicParsing="false" onAction="#moveRight" prefHeight="45.0" prefWidth="62.0" text="Right" />
