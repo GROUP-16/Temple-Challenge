@@ -1,0 +1,23 @@
+#################
+#################
+##    #G       ##
+##    #        ##
+####  #######D###
+##    T #      ##
+## ######      ##
+##      #      ##
+##            T##
+##     ##########
+##FFFF     WWWW##
+##FFFF     WWWW##
+##FFFF  T  WWWW##
+#################
+#################
+>
+2 2 START 
+5 6 TOKEN
+12 8 TOKEN
+8 14 TOKEN
+4 13 T 3
+5 14 ENEMY WALLHUGGER downRight
+8 2 ENEMY STRAIGHT RIGHT
