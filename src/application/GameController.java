@@ -1,7 +1,11 @@
 package application;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameController {
@@ -19,6 +24,8 @@ public class GameController {
 	Player newPlayer = null;
 	Integer x = null;
 	Integer y = null;
+	Instant start;
+	String url;
     @FXML
     private ImageView tileX1Y1;
     @FXML
@@ -99,22 +106,26 @@ public class GameController {
     private Button btnRight;
     @FXML
     private Button btnDown;
-    
-    
+    @FXML
+    private Label lblTime;
     
     @FXML
     private void initialize() throws IOException {
     	
-    	newMap.readFile("src/application/Level3.txt");
+    	newMap.readFile("src/application/testFile.txt");
     	allCells = (newMap.mapCharArray());
     	newPlayer = newMap.getPlayer();
     	x = newPlayer.getX();
     	y = newPlayer.getY();
     	refreshMap(x,y, newMap, allCells);
+    	start = Instant.now();
     	}
     	
     	
-    
+
+    public void setData(String data) {
+        url = data;
+    }
     private Image changeTile(Integer y, Integer x) {
     	
     	allCells = (newMap.mapCharArray());
@@ -221,8 +232,7 @@ public class GameController {
     }
     private void refreshMap(Integer y, Integer x, Map map, char[][] allCells) throws IOException {
     	if(newPlayer.isDead() == true) {
-        	Stage oldStage = (Stage) btnUp.getScene().getWindow();
-        	oldStage.close();
+
     		Parent root2 = FXMLLoader.load(getClass().getResource("GameFail.fxml"));
     		Stage stage = new Stage();
     		stage.setTitle("Game Over");
@@ -230,13 +240,19 @@ public class GameController {
     		stage.show();
     	}
     	else if(newPlayer.gameWon() == true) {
-    		Parent root2 = FXMLLoader.load(getClass().getResource("GameWin.fxml"));
-    		Stage stage = new Stage();
-    		stage.setTitle("You Win");
-    		stage.setScene(new Scene(root2));
-    		stage.show();
+    		Instant finish = Instant.now();
+    		long timeElapsed = Duration.between(start, finish).toMillis();
+    		
+    		Stage newStage = new Stage();
+    		VBox comp = new VBox();
+    		Label Congrats = new Label("CONGRATULATIONS");
+    		Label Time = new Label("You completed the level in " + (new SimpleDateFormat("mm:ss:SSS").format(new Date(timeElapsed))) + " seconds");
+    		comp.getChildren().add(Congrats);
+    		comp.getChildren().add(Time);
 
-    	}
+    		Scene stageScene = new Scene(comp, 300, 100);
+    		newStage.setScene(stageScene);
+    		newStage.show();}
     	else {
     	tileX1Y1.setImage(changeTile(x-2,y-2));
     	tileX2Y1.setImage(changeTile(x-1,y-2));
