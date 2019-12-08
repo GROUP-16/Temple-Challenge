@@ -54,37 +54,118 @@ public class Map {
 	 */
 	public String toString() {
 		char outputString[][] = new char[50][50];
+		String newString = "";
 		int x = 0; //counters
 		int y = 0;
 		for (Cell[] X : cells) {
 			for(Cell c : X) {
 				if(c != null) {
-					outputString[x][y] = c.getCellChar();
+					CellType type = c.getCellType();
+					if(type == CellType.TELEPORTER) {
+						outputString[x][y] = 'P';
+					} else {
+						outputString[x][y] = c.getCellChar(); //2d Char array to recreate the map						
+					}
+					
 				}
 				y++;
 			}
 			x++;
 			y = 0;
 		}
-		
-		for(Enemy enemy: enemies) {
-			x = enemy.getXCoord();
-			y = enemy.getYCoord();
-			outputString[y][x] = 'E';
-		}
-		
-		x = player.getX();
-		y = player.getY();
-		outputString[x][y] = 'P';
-		
 		for(char[] X : outputString) {
 			for(char Y : X) {
-				System.out.print(Y);
+				newString = newString + Y;			
 			}
-			System.out.println("");
+				if(X[0] == '\u0000') {
+				} else {
+					newString = newString + "\n"; //convert 2d array into string 
+				}
+			//time for additional information WOOOOOOOO
 		}
+		newString = newString + ">\n";
+		//TELEPORTER
+		//DOOR_CELL
+		//ITEM_CELL
+		x = 0;
+		y = 0;
+		for(Cell[] row : this.cells) {
+			y = 0;
+			for(Cell c : row) {
+				if(!(c == null)) {
+					Cell currentCell = c;
+					CellType currentCellType = currentCell.getCellType();
+					if(currentCellType == CellType.TELEPORTER || currentCellType == CellType.DOOR_CELL || currentCellType == CellType.ITEM_CELL ) {
+						newString = newString + x + " " + y + " ";
+						switch(currentCellType) {
+						case TELEPORTER:
+							Teleporter t = (Teleporter) c;
+							newString = newString + t.getPairX() + " " + t.getPairY() + "\n";
+							break;
+						case DOOR_CELL:
+							Door d = (Door) c;
+							String doorType = "";
+							if(d.getDoorType() == DoorType.KEY_DOOR) {
+								doorType = "K";
+							} else {
+								doorType = "T";
+							}
+							newString = newString + doorType + " " + d.getCondition() + "\n";
+							break;
+						case ITEM_CELL:
+							Item i = (Item) c;
+							ItemType itemType = i.getItemType();
+							if(itemType == ItemType.KEY) {
+								newString = newString + i.getItemType() + " " + i.getColour() + "\n";
+							} else {
+								newString = newString + i.getItemType() + "\n";
+							}
+							break;
+						default:
+							break;
+						
+						}
+					}
+				} else {
+					
+				}
+				y++;
+			}
+			x++;
+		}
+		Player p = this.player;
+		newString = newString + p.getX() + " " + p.getY() + " START";
+		ArrayList<Item> items = p.getItems();
+		for(Item i : items) {
+			if(i.getItemType() == ItemType.KEY) {
+				newString = newString + i.getItemType() + " " + i.getColour();
+			} else {
+				newString = newString + i.getItemType();
+			}
+		}
+		newString = newString + "\n";
+		
+		//time to add enemies
+		 ArrayList<Enemy> enemies = this.enemies;
+		 for(Enemy e : enemies) {
+			 newString = newString + e.getYCoord() + " " + e.getXCoord() + " ENEMY " + e.getEnemyType() + " ";
+			 if(e.getEnemyType() == EnemyType.STRAIGHT ) {
+				 StraightLineAI enemy = (StraightLineAI) e;
+				 newString = newString + enemy.getDirection() ;
+			 } else if(e.getEnemyType() == EnemyType.WALLHUGGER) {
+				 WallHuggingAI enemy = (WallHuggingAI) e;
+				 newString = newString + enemy.getDirectionWall();
+			 } else if(e.getEnemyType() == EnemyType.DUMBTARGETNG) {
+				 
+			 } else if(e.getEnemyType() == EnemyType.SMART) {
+				 
+			 }
+			 newString = newString + "\n";
+			 
+		 }
+		System.out.println(newString);
 
-		return " ";
+		return newString;
 	}
 	
 	/**
