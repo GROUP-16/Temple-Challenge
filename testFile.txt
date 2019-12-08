@@ -1,18 +1,43 @@
-##########
-#     # G#
-##### # ##
-#   # #  #
-# # # ##P#
-# # # ####
-# #   ##P#
-# ######D#
-# #   #I #
-# # # ## #
-#   #    #
-##########
+###################################
+###################################
+##            D                 P##
+##            #####################
+##            #P I #             ##
+##P###############P#             ##
+#######                          ##
+##P   #                          ##
+##    #                          ##
+##I   #      FFFFFFF             ##
+#######      FFFFFFF     WWW     ##
+##  I #      FFFPFFFWWWWWWGW     ##
+##    #      FFFFFFF     WWW     ##
+##    #      FFFFFFF             ##
+##                               ##
+##                               ##
+##                               ##
+##                               ##
+##                               ##
+##                               ##
+###################################
+###################################
 >
-1 1 START 
-7 8 K RED
-8 7 KEY RED
-6 8 4 8 
-4 8 6 8
+2 3 START
+5 2 7 2
+7 2 5 2
+9 2 KEY RED
+2 14 K RED
+2 32 4 15
+4 15 2 32
+4 17 FIRE_BOOTS
+5 18 11 16
+11 14 FLIPPER
+8 12 ENEMY STRAIGHT LEFT
+8 20 ENEMY STRAIGHT RIGHT
+14 12 ENEMY STRAIGHT LEFT
+14 20 ENEMY STRAIGHT RIGHT 
+15 12 ENEMY STRAIGHT DOWN
+15 20 ENEMY STRAIGHT DOWN
+7 12 ENEMY STRAIGHT UP
+7 20 ENEMY STRAIGHT UP
+19 32 ENEMY SMART 
+4 32 ENEMY SMART 
