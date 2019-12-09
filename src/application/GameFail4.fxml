@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FailController4">
    <children>
-      <Label layoutX="154.0"  layoutY="31.0" text="UNLUCKY" />
+      <Label layoutX="154.0" layoutY="31.0" text="UNLUCKY" />
       <Button fx:id="btnMenu" onAction="#openMainMenu" layoutX="47.0" layoutY="98.0" mnemonicParsing="false" text="Menu" />
       <Label layoutX="139.0" layoutY="67.0" text="You have DIED!" />
       <Button fx:id="btnAgain" layoutX="267.0" layoutY="98.0" mnemonicParsing="false" text="Try Again" />
