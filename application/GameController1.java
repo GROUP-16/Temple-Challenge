@@ -28,7 +28,7 @@ public class GameController1 {
 	String url;
 	Integer level;
 	/**
-	 * Each cell shown the player
+	 * each image named tile.... is a the image of a cell that surrounds the player
 	 */
     @FXML
     private ImageView tileX1Y1;
@@ -80,6 +80,9 @@ public class GameController1 {
     private ImageView tileX4Y5;
     @FXML
     private ImageView tileX5Y5;
+	/**
+     * image of the items/pick ups
+     */
     @FXML
     private ImageView redKeys;
     @FXML
@@ -92,6 +95,9 @@ public class GameController1 {
     private ImageView flippers;
     @FXML
     private ImageView fireBoots;
+	/**
+     * image of the total items the player has
+     */
     @FXML
     private TextField tokenTotal;
     @FXML
@@ -102,6 +108,9 @@ public class GameController1 {
     private TextField redTotal;
     @FXML
     private TextField yellowTotal;
+	/**
+     * image of the controls
+     */
     @FXML
     private Button btnUp;
     @FXML
@@ -128,7 +137,7 @@ public class GameController1 {
     	}
     	
     /**
-     * This is the back button that will send you back to the main
+     * This is the back button that will send you back to the main.
      * @throws IOException
      */
     @FXML
@@ -142,8 +151,8 @@ public class GameController1 {
  		
  		stage.show();  
  	}
-    /**
-     * converts all cells into images to be shown on screen
+     /**
+     * Converts all cells into images to be shown on screen.
      * @param y coordinate of the cell
      * @param x coordinate of the cell
      * @return required image of the cell represented by the character
@@ -253,11 +262,12 @@ public class GameController1 {
     	return imageLocation;
     }
     /**
-     * 
-     * @param y players coordinates
-     * @param x players coodinates
-     * @param map
-     * @param allCells
+     * Checks if the player has won or is dead and responds to it.
+     * As well as updates each visible cell for the player.
+     * @param y coordinate of the player
+     * @param x coordinate of the player
+     * @param map the current map of the game
+     * @param allCells 
      * @throws IOException
      */
     private void refreshMap(Integer y, Integer x, Map map, char[][] allCells) throws IOException {
@@ -313,7 +323,7 @@ public class GameController1 {
     	}
     	}
     /**
-     * moves the player up 1 square
+     * Moves the player up one square and updates the inventory images.
      * @throws IOException
      */
     @FXML
@@ -342,7 +352,7 @@ public class GameController1 {
 
     }
     /**
-     * moves the player left one square
+     * Moves the player left one square and updates the inventory images.
      * @throws IOException
      */
     @FXML
@@ -369,7 +379,8 @@ public class GameController1 {
 
     }
     /**
-     * moves the player right 1 square
+    /**
+     * Moves the player right one square and updates the inventory images.
      * @throws IOException
      */
     @FXML
@@ -395,7 +406,7 @@ public class GameController1 {
     	System.out.println(newMap);
     }
     /**
-     * moves the player down one square
+     * Moves the player down one square and updates the inventory images.
      * @throws IOException
      */
     @FXML
@@ -429,7 +440,8 @@ public class GameController1 {
 
     }
     /**
-     * updates the enemy positions
+     * Updates the enemy positions by cycling through the list of enemies and updating each one individually.
+     * This also checks if the enemy is a SmartAI and will reinitialise the enemy if it is.
      * @param x player coordinates
      * @param y player coordinates 
      * @throws IOException
