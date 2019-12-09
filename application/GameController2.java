@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class GameController1 {
+public class GameController2 {
 	
 	public Map newMap = new Map();
 	char[][] allCells = null;
@@ -27,9 +27,6 @@ public class GameController1 {
 	Instant start;
 	String url;
 	Integer level;
-	/**
-	 * Each cell shown the player
-	 */
     @FXML
     private ImageView tileX1Y1;
     @FXML
@@ -118,7 +115,7 @@ public class GameController1 {
     @FXML
     private void initialize() throws IOException {
     	
-    	newMap.readFile("src/application/Level1.txt");
+    	newMap.readFile("src/application/Level2.txt");
     	allCells = (newMap.mapCharArray());
     	newPlayer = newMap.getPlayer();
     	x = newPlayer.getX();
@@ -126,11 +123,6 @@ public class GameController1 {
     	refreshMap(x,y, newMap, allCells);
     	start = Instant.now();
     	}
-    	
-    /**
-     * This is the back button that will send you back to the main
-     * @throws IOException
-     */
     @FXML
  	private void openProf() throws IOException {
      	Stage oldStage = (Stage) btnBack.getScene().getWindow();
@@ -142,12 +134,6 @@ public class GameController1 {
  		
  		stage.show();  
  	}
-    /**
-     * converts all cells into images to be shown on screen
-     * @param y coordinate of the cell
-     * @param x coordinate of the cell
-     * @return required image of the cell represented by the character
-     */
     private Image changeTile(Integer y, Integer x) {
     	
     	allCells = (newMap.mapCharArray());
@@ -252,18 +238,9 @@ public class GameController1 {
 
     	return imageLocation;
     }
-    /**
-     * 
-     * @param y players coordinates
-     * @param x players coodinates
-     * @param map
-     * @param allCells
-     * @throws IOException
-     */
     private void refreshMap(Integer y, Integer x, Map map, char[][] allCells) throws IOException {
     	if(newPlayer.isDead() == true) {
-         	Stage oldStage = (Stage) btnBack.getScene().getWindow();
-         	oldStage.close();
+
     		Parent root2 = FXMLLoader.load(getClass().getResource("GameFail.fxml"));
     		Stage stage = new Stage();
     		stage.setTitle("Game Over");
@@ -312,10 +289,6 @@ public class GameController1 {
     	tileX5Y5.setImage(changeTile(x+2,y+2));
     	}
     	}
-    /**
-     * moves the player up 1 square
-     * @throws IOException
-     */
     @FXML
     private void moveUp() throws IOException{
     	newPlayer.move(DirectionType.up);
@@ -341,10 +314,6 @@ public class GameController1 {
     	System.out.println(newMap);
 
     }
-    /**
-     * moves the player left one square
-     * @throws IOException
-     */
     @FXML
     private void moveLeft() throws IOException {
     	newPlayer.move(DirectionType.left);
@@ -368,10 +337,6 @@ public class GameController1 {
     	System.out.println(newMap);
 
     }
-    /**
-     * moves the player right 1 square
-     * @throws IOException
-     */
     @FXML
     private void moveRight() throws IOException {
     	newPlayer.move(DirectionType.right);
@@ -394,10 +359,7 @@ public class GameController1 {
     	refreshMap(x,y, newMap, allCells);
     	System.out.println(newMap);
     }
-    /**
-     * moves the player down one square
-     * @throws IOException
-     */
+    
     @FXML
     private void moveDown() throws IOException {
     	newPlayer.move(DirectionType.down);
@@ -428,12 +390,6 @@ public class GameController1 {
     	System.out.println(newMap);
 
     }
-    /**
-     * updates the enemy positions
-     * @param x player coordinates
-     * @param y player coordinates 
-     * @throws IOException
-     */
     private void updateEnemy(Integer x, Integer y) throws IOException {
     	refreshMap(x,y, newMap, allCells);
     	ArrayList<Enemy> enemies = newMap.getEnemies();
