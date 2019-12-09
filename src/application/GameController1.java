@@ -262,7 +262,8 @@ public class GameController1 {
      */
     private void refreshMap(Integer y, Integer x, Map map, char[][] allCells) throws IOException {
     	if(newPlayer.isDead() == true) {
-
+         	Stage oldStage = (Stage) btnBack.getScene().getWindow();
+         	oldStage.close();
     		Parent root2 = FXMLLoader.load(getClass().getResource("GameFail.fxml"));
     		Stage stage = new Stage();
     		stage.setTitle("Game Over");
